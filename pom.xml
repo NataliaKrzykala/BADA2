@@ -18,7 +18,7 @@
 
 		<bootstrap.version>4.0.0-2</bootstrap.version>
 		<webjars-locator.version>0.30</webjars-locator.version>
-		<lombok.version>1.18.2</lombok.version>
+		<lombok.version>1.18.30</lombok.version>
 		<commonsvalidator.version>1.6</commonsvalidator.version>
 		<!-- update mrozka -->
 		<maven.compiler.source>16</maven.compiler.source>

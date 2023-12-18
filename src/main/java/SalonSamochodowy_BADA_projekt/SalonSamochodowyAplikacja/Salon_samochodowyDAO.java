@@ -9,11 +9,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class Salon_samochodowyDAO {
-    @Autowired
+    //@Autowired
     private JdbcTemplate jdbcTemplate;
 
     public Salon_samochodowyDAO(JdbcTemplate jdbcTemplate) {
-
         this.jdbcTemplate = jdbcTemplate;
     }
 
