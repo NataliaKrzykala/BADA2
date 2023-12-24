@@ -45,6 +45,8 @@ public class AppController implements WebMvcConfigurer {
         }
     }
 
+
+
     @RequestMapping(value = {"/main_admin"})
     public String showAdminPage(Model model) {
         return "admin/main_admin";
