@@ -65,4 +65,13 @@ public class AppController implements WebMvcConfigurer {
         model.addAttribute("listSalon_samochodowy", listSalon_samochodowy);
         return "index";
     }
+
+    /*@Autowired
+    private OfertaDAO daoOferta;
+    @RequestMapping(value ={"/main"})
+    public String viewOfertaPage(Model model){
+        List<Oferta> listOferta = daoOferta.list();
+        model.addAttribute("listOferta", listOferta);
+        return "main";
+    }*/
 }

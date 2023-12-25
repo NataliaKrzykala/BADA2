@@ -8,15 +8,15 @@
 
 </head>
 <body>
-<!-- <body th:style="'background: url(/assets/img/img.png) no-repeat center center fixed;'"> -->
+ <!--th:style="'background: url(../assets/home_background.png) no-repeat center center fixed;'">-->
 
 
-<!--<style th:inline="text">-->
-<!--    body{-->
-<!--        background: url([[@{/assets/img/img.png}]])-->
-<!--        no-repeat center center fixed;-->
-<!--    }-->
-<!--</style>-->
+<!--<style th:inline="text">
+    body{
+        background: url(../assets/home_background.png)
+        no-repeat center center fixed;
+    }
+</style>-->
 
 
 <!-- Navigation -->
@@ -52,7 +52,7 @@
 
 
 <!--Using images in page    -->
-<!-- <img th:src="@{/assets/img/img.png}" alt="Image" class="img-fluid"> -->
+<!--<img th:src="@{/assets/home.png}" alt="Image" class="img-fluid">-->
 
 
 <div class="container">
@@ -98,6 +98,38 @@
     </table>
 
 </div>
+
+ <!--<div align="center">
+     <h1>Oferty</h1>
+
+     <table border="1" cellpadding="10">
+
+         <thead>
+         <tr>
+             <th>ID Oferta</th>
+             <th>ID Salon</th>
+             <th>Cena</th>
+             <th>Date of starting</th>
+             <th>Nabycie</th>
+             <th>ID Pojazd</th>
+
+         </tr>
+         </thead>
+
+         <tbody>
+         <tr th:each="oferta : ${listSalon_samochodowy}">
+             <td th:text="${oferta.id_oferta}">ID Oferta</td>
+             <td th:text="${oferta.id_salon_samochodowy}">ID Salon</td>
+             <td th:text="${oferta.cena}">Cena</td>
+             <td th:text="${oferta.data_utworzenia}">Date of starting</td>
+             <td th:text="${oferta.typ_nabycia}">Nabycie</td>
+             <td th:text="${oferta.id_pojazd}">ID Pojazd</td>
+         </tr>
+         </tbody>
+
+     </table>
+
+ </div>-->
 
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
