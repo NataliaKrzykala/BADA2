@@ -18,7 +18,7 @@ public class Typ_platnosci {
         this.id_typ_platnosci = id_typ_platnosci;
     }
 
-    public String getPlatnosc_nazwa() {git gi
+    public String getPlatnosc_nazwa() {
         return platnosc_nazwa;
     }
 
