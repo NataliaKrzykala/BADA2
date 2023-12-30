@@ -19,7 +19,7 @@
 <!--</style>-->
 
 
-<!-- Navigation -->
+<!-- Navigation
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="/">BADA Project - Part II</a>
@@ -48,43 +48,9 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav>-->
 
 <p>JESTES W MAIN.HTML</p>
-<!--Using images in page    -->
-<!-- <img th:src="@{/assets/img/img.png}" alt="Image" class="img-fluid"> -->
-
-
-<div align="center">
-    <h1>Salony samochodowe</h1>
-
-    <table border="1" cellpadding="10">
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Owner</th>
-            <th>Date of starting</th>
-            <th>Name</th>
-            <th>ID Address</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="salon : ${listSalon_samochodowy}">
-            <td th:text="${salon.id_salon_samochodowy}">ID</td>
-            <td th:text="${salon.wlasciciel}">Owner</td>
-            <td th:text="${salon.data_zalozenia}">Date of starting</td>
-            <td th:text="${salon.nazwa}">Name</td>
-            <td th:text="${salon.id_adres}">ID Address</td>
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>
-
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
