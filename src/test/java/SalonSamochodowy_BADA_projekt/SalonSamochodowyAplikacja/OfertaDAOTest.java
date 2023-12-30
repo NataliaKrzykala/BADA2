@@ -24,9 +24,18 @@ public class OfertaDAOTest {
     }
 
     @Test
-    void list() {
-        List<Oferta> listOferta = dao.list();
+    void listKupno() {
+        List<Oferta> listOferta = dao.listOfertaKupno();
         assertFalse(listOferta.isEmpty());
+        for (Oferta oferta : listOferta) {
+            System.out.println(oferta.toString());
+        }
+    }
+
+    @Test
+    void listWypozyczenie() {
+        List<Oferta> listOferta = dao.listOfertaWypozyczenie();
+        assertTrue(listOferta.isEmpty());
         for (Oferta oferta : listOferta) {
             System.out.println(oferta.toString());
         }

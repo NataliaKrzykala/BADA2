@@ -14,8 +14,16 @@ public class OfertaDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Oferta> list(){
-        String sql = "SELECT * FROM \"Oferty\"";
+    public List<Oferta> listOfertaKupno(){
+        String sql = "SELECT * FROM \"Oferty\" WHERE \"typ_nabycia\" = 'kupno'";
+
+        List<Oferta> listOferta = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Oferta.class));
+
+        return listOferta;
+    }
+
+    public List<Oferta> listOfertaWypozyczenie(){
+        String sql = "SELECT * FROM \"Oferty\" WHERE \"typ_nabycia\" = 'wypozyczenie'";
 
         List<Oferta> listOferta = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Oferta.class));
 

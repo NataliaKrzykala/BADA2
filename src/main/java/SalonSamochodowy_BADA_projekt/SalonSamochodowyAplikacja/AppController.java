@@ -22,10 +22,16 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/main_admin").setViewName("admin/main_admin");
         registry.addViewController("/main_user").setViewName("user/main_user");
+        registry.addViewController("/kontakt").setViewName("kontakt");
+        registry.addViewController("/salony").setViewName("salony");
+        registry.addViewController("/kupno").setViewName("ofertaKupno");
+        registry.addViewController("/wypozyczenie").setViewName("ofertaWypozyczenie");
+        registry.addViewController("/modele").setViewName("modele");
     }
 
-    //@Controller
-    public class DashboardController {
+
+   /* @Controller
+    public class DashboardController {*/
         @RequestMapping
                 ("/main"
                 )
@@ -40,9 +46,19 @@ public class AppController implements WebMvcConfigurer {
                             ("USER")) {
                 return "redirect:/main_user";
             } else {
-                return "redirect:/index";
+                return "redirect:/main";
             }
         }
+    //}
+
+    /*@RequestMapping(value = "/main")
+    public String showMainPage() {
+        return "main";
+    }*/
+
+    @RequestMapping(value = "/login")
+    public String showLoginPage() {
+        return "login";
     }
 
 
@@ -59,19 +75,37 @@ public class AppController implements WebMvcConfigurer {
 
     @Autowired
     private Salon_samochodowyDAO dao;
-    @RequestMapping(value ={"/index", "/"})
+    @RequestMapping(value ={"/salony"})
     public String viewHomePage(Model model){
         List<Salon_samochodowy> listSalon_samochodowy = dao.list();
         model.addAttribute("listSalon_samochodowy", listSalon_samochodowy);
-        return "index";
+        return "salony";
     }
 
-    /*@Autowired
-    private OfertaDAO daoOferta;
-    @RequestMapping(value ={"/main"})
-    public String viewOfertaPage(Model model){
-        List<Oferta> listOferta = daoOferta.list();
-        model.addAttribute("listOferta", listOferta);
-        return "main";
-    }*/
+    @Autowired
+    private OfertaDAO daoOfertaKupno;
+    @RequestMapping(value ={"/ofertaKupno"})
+    public String viewOfertaKupnoPage(Model model){
+        List<Oferta> listOfertaKupno = daoOfertaKupno.listOfertaKupno();
+        model.addAttribute("listOfertaKupno", listOfertaKupno);
+        return "ofertaKupno";
+    }
+
+    @Autowired
+    private OfertaDAO daoOfertaWypozyczenie;
+    @RequestMapping(value ={"/ofertaWypozyczenie"})
+    public String viewOfertaWypozyczeniePage(Model model){
+        List<Oferta> listOfertaWypozyczenie = daoOfertaWypozyczenie.listOfertaWypozyczenie();
+        model.addAttribute("listOfertaWypozyczenie", listOfertaWypozyczenie);
+        return "ofertaWypozyczenie";
+    }
+
+    @Autowired
+    private ModelDAO daoModel;
+    @RequestMapping(value ={"/modele"})
+    public String viewModelePage(Model model){
+        List<SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model> listModel = daoModel.list();
+        model.addAttribute("listModel", listModel);
+        return "modele";
+    }
 }
