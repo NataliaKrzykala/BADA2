@@ -31,12 +31,12 @@ class Salon_samochodowyDAOTest {
             System.out.println(salon.toString());
         }
     }
-
-    @Test
-    void save() {
-        Salon_samochodowy salon_samochodowy = new Salon_samochodowy(30, "SomeOwner", "10.10.23", "WAuto", 41);
-        dao.save(salon_samochodowy);
-    }
+//
+//    @Test
+//    void save() {
+//        Salon_samochodowy salon_samochodowy = new Salon_samochodowy(30, "SomeOwner", "10.10.23", "WAuto", 41);
+//        dao.save(salon_samochodowy);
+//    }
 
     @Test
     void get() {

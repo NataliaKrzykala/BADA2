@@ -1,11 +1,23 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import java.time.LocalDate;
+
 public class Salon_samochodowy {
     private int id_salon_samochodowy;
     private String wlasciciel;
-    private String data_zalozenia;
+    private LocalDate data_zalozenia;
     private String nazwa;
     private int id_adres;
+
+    private Adres adres;
+
+    public Adres getAdres() {
+        return adres;
+    }
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
 
     public int getId_salon_samochodowy() {
         return id_salon_samochodowy;
@@ -23,11 +35,11 @@ public class Salon_samochodowy {
         this.wlasciciel = wlasciciel;
     }
 
-    public String getData_zalozenia() {
+    public LocalDate getData_zalozenia() {
         return data_zalozenia;
     }
 
-    public void setData_zalozenia(String data_zalozenia) {
+    public void setData_zalozenia(LocalDate data_zalozenia) {
         this.data_zalozenia = data_zalozenia;
     }
 
@@ -52,13 +64,14 @@ public class Salon_samochodowy {
         return "Salon_samochodowy{" +
                 "id_salon_samochodowy=" + id_salon_samochodowy +
                 ", wlasciciel='" + wlasciciel + '\'' +
-                ", data_zalozenia='" + data_zalozenia + '\'' +
+                ", data_zalozenia=" + data_zalozenia +
                 ", nazwa='" + nazwa + '\'' +
                 ", id_adres=" + id_adres +
+                ", adres=" + adres +
                 '}';
     }
 
-    public Salon_samochodowy(int id_salon_samochodowy, String wlasciciel, String data_zalozenia, String nazwa, int id_adres) {
+    public Salon_samochodowy(int id_salon_samochodowy, String wlasciciel, LocalDate data_zalozenia, String nazwa, int id_adres) {
         this.id_salon_samochodowy = id_salon_samochodowy;
         this.wlasciciel = wlasciciel;
         this.data_zalozenia = data_zalozenia;

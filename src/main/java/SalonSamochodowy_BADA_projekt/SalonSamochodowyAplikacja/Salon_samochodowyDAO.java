@@ -1,34 +1,52 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.stereotype.Repository;
-
 @Repository
 public class Salon_samochodowyDAO {
-    //@Autowired
-    private JdbcTemplate jdbcTemplate;
 
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
     public Salon_samochodowyDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Salon_samochodowy> list(){
-        String sql = "SELECT * FROM \"Salony_samochodowe\"";
+    public List<Salon_samochodowy> list() {
+        String sql = "SELECT ss.*, a.*, p.* " +
+                "FROM \"Salony_samochodowe\" ss " +
+                "JOIN \"Adresy\" a ON ss.\"id_adres\" = a.\"id_adres\" " +
+                "JOIN \"Poczty\" p ON a.\"id_poczta\" = p.\"id_poczta\"";
 
-        List<Salon_samochodowy> listSalon_samochodowy = jdbcTemplate.query(sql,BeanPropertyRowMapper.newInstance(Salon_samochodowy.class));
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            Salon_samochodowy salon = new Salon_samochodowy();
+            salon.setId_salon_samochodowy(rs.getInt("id_salon_samochodowy"));
+            salon.setWlasciciel(rs.getString("wlasciciel"));
+            salon.setData_zalozenia(rs.getDate("data_zalozenia").toLocalDate());
+            salon.setNazwa(rs.getString("nazwa"));
 
-        return listSalon_samochodowy;
+            Adres adres = new Adres();
+            adres.setId_adres(rs.getInt("id_adres"));
+            adres.setMiejscowosc(rs.getString("miejscowosc"));
+            adres.setUlica(rs.getString("ulica"));
+            adres.setNr_lokalu(rs.getString("nr_lokalu"));
+            adres.setKod_poczty(rs.getString("kod_poczty"));
+            adres.setPoczta(rs.getString("poczta"));
+
+            salon.setAdres(adres);
+
+            return salon;
+        });
     }
 
-    /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Salon_samochodowy salon_samochodowy) {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("\"Salony_samochodowe\"")
@@ -43,16 +61,16 @@ public class Salon_samochodowyDAO {
         simpleJdbcInsert.execute(parameters);
     }
 
-    /* Read – odczytywanie danych z bazy */
     public Salon_samochodowy get(int id) {
+        // Implementacja pobierania pojedynczego salonu (możesz dodać, gdy jest taka potrzeba)
         return null;
     }
 
-    /* Update – aktualizacja danych */
     public void update(Salon_samochodowy salon_samochodowy) {
+        // Implementacja aktualizacji danych salonu (możesz dodać, gdy jest taka potrzeba)
     }
 
-    /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        // Implementacja usuwania salonu (możesz dodać, gdy jest taka potrzeba)
     }
 }

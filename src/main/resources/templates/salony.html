@@ -91,7 +91,6 @@
 
 </div>-->
 
-
 <div id="accordion">
     <!-- Iterate over the list of Salon_samochodowy objects and create accordion items dynamically -->
     <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
@@ -108,6 +107,7 @@
             <div class="card-body">
                 <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
                 <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
+                <p><strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span></p>
                 <!-- Add other fields as needed -->
             </div>
         </div>

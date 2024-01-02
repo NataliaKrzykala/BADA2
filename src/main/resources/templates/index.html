@@ -1,131 +1,167 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
+    <meta charset="UTF-8" />
+    <title>VeloVista - Where Innovation Meets Elegance</title>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f4f4f4;
+            color: #0ee3ff;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 5px;
+            border: none;
+        }
+
+        .navbar-brand {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 15px;
+        }
+
+        .jumbotron {
+            background: #06318f;
+            padding: 100px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .jumbotron h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .jumbotron p {
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+
+        .offer-section {
+            text-align: center;
+            padding: 50px 0;
+            background: #fff;
+            margin-top: -20px;
+            border-top: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .offer-section h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #9edfff;
+        }
+
+        .car-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .car-card img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .action-buttons a {
+            margin-right: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .action-buttons a:hover {
+            background: #23ffe6;
+        }
+    </style>
 </head>
+
 <body>
- <!--th:style="'background: url(../assets/home_background.png) no-repeat center center fixed;'">-->
-
-
-<!--<style th:inline="text">
-    body{
-        background: url(../assets/home_background.png)
-        no-repeat center center fixed;
-    }
-</style>-->
-
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/salony}">Shops</a></a>
-                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a></a>
+                        <a class="dropdown-item" th:href="@{/salony}">Shops</a>
+                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a>
                     </div>
                 </li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a></a>
+                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a>
+                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a>
                     </div>
                 </li>
-
             </ul>
-
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a></a>
+                    <a class="nav-link" th:href="@{/login}">Login</a>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
 
-
-<!--Using images in page    -->
-<!--<img th:src="@{/assets/home.png}" alt="Image" class="img-fluid">-->
- <p>JESTES W INDEX.HTML</p>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
-
-            <label style="font-size:30px">VeloVista - where innovation meets elegance on the open road.</label>
-            <div style="font-size:20px">If you want to login, click <a th:href="@{/login}"><b>here</b></a> or in the
-                upper right corner.
-            </div>
-
-        </div>
+<!-- Header Section -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>VeloVista - Where Innovation Meets Elegance on the Open Road</h1>
+        <p>If you want to login, click <a th:href="@{/login}"><b>here</b></a> or in the upper right corner.</p>
     </div>
 </div>
 
-
- <!--<div align="center">
-     <h1>Oferty</h1>
-
-     <table border="1" cellpadding="10">
-
-         <thead>
-         <tr>
-             <th>ID Oferta</th>
-             <th>ID Salon</th>
-             <th>Cena</th>
-             <th>Date of starting</th>
-             <th>Nabycie</th>
-             <th>ID Pojazd</th>
-
-         </tr>
-         </thead>
-
-         <tbody>
-         <tr th:each="oferta : ${listSalon_samochodowy}">
-             <td th:text="${oferta.id_oferta}">ID Oferta</td>
-             <td th:text="${oferta.id_salon_samochodowy}">ID Salon</td>
-             <td th:text="${oferta.cena}">Cena</td>
-             <td th:text="${oferta.data_utworzenia}">Date of starting</td>
-             <td th:text="${oferta.typ_nabycia}">Nabycie</td>
-             <td th:text="${oferta.id_pojazd}">ID Pojazd</td>
-         </tr>
-         </tbody>
-
-     </table>
-
- </div>-->
-
-
+<!-- Scripts -->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
 </body>
-</html>
 
+</html>

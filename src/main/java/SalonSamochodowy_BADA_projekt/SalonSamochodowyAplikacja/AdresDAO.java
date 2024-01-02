@@ -36,15 +36,18 @@ public class AdresDAO {
 
     /* Read – odczytywanie danych z bazy */
     public Adres get(int id) {
-        return null;
+        String sql = "SELECT * FROM \"Adresy\" WHERE \"id_adres\" = ?";
+        Adres adres = jdbcTemplate.queryForObject(sql, new Object[]{id}, BeanPropertyRowMapper.newInstance(Adres.class));
+        return adres;
     }
 
     /* Update – aktualizacja danych */
     public void update(Adres adres) {
+        // Implementacja aktualizacji adresu
     }
 
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        // Implementacja usuwania adresu
     }
-
 }

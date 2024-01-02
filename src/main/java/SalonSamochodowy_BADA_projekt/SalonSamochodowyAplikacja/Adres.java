@@ -8,6 +8,26 @@ public class Adres {
     private String nr_lokalu;
     private int id_poczta;
 
+    private String kod_poczty;
+    private String poczta;
+
+    public String getKod_poczty() {
+        return kod_poczty;
+    }
+
+    public void setKod_poczty(String kod_poczty) {
+        this.kod_poczty = kod_poczty;
+    }
+
+    public String getPoczta() {
+        return poczta;
+    }
+
+    public void setPoczta(String poczta) {
+        this.poczta = poczta;
+    }
+
+
     public Adres(int id_adres, String miejscowosc, String ulica, String nr_lokalu, int id_poczta) {
         this.id_adres = id_adres;
         this.miejscowosc = miejscowosc;
