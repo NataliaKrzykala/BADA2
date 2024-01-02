@@ -35,7 +35,8 @@ public class AdresDAOTest {
 
     @Test
     void save() {
-        fail("Not yet implemented");
+        Adres adres = new Adres(30, "SomeOwner", "lala", "10b", 1);
+        dao.save(adres);
     }
 
     @Test

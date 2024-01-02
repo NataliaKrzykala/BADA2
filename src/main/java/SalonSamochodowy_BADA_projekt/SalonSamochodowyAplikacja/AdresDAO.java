@@ -2,6 +2,8 @@ package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,6 +27,11 @@ public class AdresDAO {
 
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Adres adres) {
+        SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
+        insertActor.withTableName("\"Adresy\"").usingColumns("\"id_adres\"", "\"miejscowosc\"", "\"ulica\"", "\"nr_lokalu\"", "\"id_poczta\"");
+
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(adres);
+        insertActor.execute(param);
     }
 
     /* Read – odczytywanie danych z bazy */
