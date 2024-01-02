@@ -1,6 +1,8 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -28,11 +30,17 @@ public class Salon_samochodowyDAO {
 
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Salon_samochodowy salon_samochodowy) {
-        SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-        insertActor.withTableName("\"Salony_samochodowe\"").usingColumns("\"id_salon_samochodowy\"", "\"wlasciciel\"", "\"data_zalozenia\"", "\"nazwa\"", "\"id_adres\"");
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("\"Salony_samochodowe\"")
+                .usingColumns("\"wlasciciel\"", "\"data_zalozenia\"", "\"nazwa\"", "\"id_adres\"");
 
-        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(salon_samochodowy);
-        insertActor.execute(param);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("\"wlasciciel\"", salon_samochodowy.getWlasciciel());
+        parameters.put("\"data_zalozenia\"", salon_samochodowy.getData_zalozenia());
+        parameters.put("\"nazwa\"", salon_samochodowy.getNazwa());
+        parameters.put("\"id_adres\"", salon_samochodowy.getId_adres());
+
+        simpleJdbcInsert.execute(parameters);
     }
 
     /* Read – odczytywanie danych z bazy */
