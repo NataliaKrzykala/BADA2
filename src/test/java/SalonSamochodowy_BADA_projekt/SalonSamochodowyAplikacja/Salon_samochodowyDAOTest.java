@@ -34,7 +34,8 @@ class Salon_samochodowyDAOTest {
 
     @Test
     void save() {
-        fail("Not yet implemented");
+        Salon_samochodowy salon_samochodowy = new Salon_samochodowy(30, "SomeOwner", "10.10.23", "WAuto", 41);
+        dao.save(salon_samochodowy);
     }
 
     @Test

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -26,6 +28,11 @@ public class Salon_samochodowyDAO {
 
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Salon_samochodowy salon_samochodowy) {
+        SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
+        insertActor.withTableName("\"Salony_samochodowe\"").usingColumns("\"id_salon_samochodowy\"", "\"wlasciciel\"", "\"data_zalozenia\"", "\"nazwa\"", "\"id_adres\"");
+
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(salon_samochodowy);
+        insertActor.execute(param);
     }
 
     /* Read – odczytywanie danych z bazy */
