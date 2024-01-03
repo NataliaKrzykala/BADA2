@@ -78,6 +78,9 @@
             <th>Price</th>
             <th>Which shop</th>
             <th>Which car</th>
+            <th>Which model</th>
+            <th>VIN</th>
+            <th>Name of shop</th>
 
         </tr>
         </thead>
@@ -89,6 +92,9 @@
             <td th:text="${oferta.cena}">Price</td>
             <td th:text="${oferta.id_salon_samochodowy}">Which shop</td>
             <td th:text="${oferta.id_pojazd}">Which car</td>
+            <td th:text="${oferta.pojazd.id_model}">Which model</td>
+            <td th:text="${oferta.pojazd.VIN}">VIN</td>
+            <td th:text="${oferta.salon.nazwa}">Name of shop</td>
         </tr>
         </tbody>
 

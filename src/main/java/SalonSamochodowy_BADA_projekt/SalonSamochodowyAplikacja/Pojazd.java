@@ -1,18 +1,20 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import java.time.LocalDate;
+
 public class Pojazd {
 
     private int id_pojazd;
     private String VIN;
     private String numer_rejestracyjny;
     private String stan;
-    private String data_przegladu;
+    private LocalDate data_przegladu;
     private int przebieg;
     private String typ_paliwa;
     private String kolor;
     private int id_model;
 
-    public Pojazd(int id_pojazd, String VIN, String numer_rejestracyjny, String stan, String data_przegladu, int przebieg, String typ_paliwa, String kolor, int id_model) {
+    public Pojazd(int id_pojazd, String VIN, String numer_rejestracyjny, String stan, LocalDate data_przegladu, int przebieg, String typ_paliwa, String kolor, int id_model) {
         this.id_pojazd = id_pojazd;
         this.VIN = VIN;
         this.numer_rejestracyjny = numer_rejestracyjny;
@@ -56,11 +58,11 @@ public class Pojazd {
         this.stan = stan;
     }
 
-    public String getData_przegladu() {
+    public LocalDate getData_przegladu() {
         return data_przegladu;
     }
 
-    public void setData_przegladu(String data_przegladu) {
+    public void setData_przegladu(LocalDate data_przegladu) {
         this.data_przegladu = data_przegladu;
     }
 

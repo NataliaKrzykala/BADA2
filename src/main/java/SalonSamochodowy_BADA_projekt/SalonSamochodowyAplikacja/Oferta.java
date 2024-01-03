@@ -1,15 +1,34 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import java.time.LocalDate;
+
 public class Oferta {
     private int id_oferta;
-    private String data_utworzenia;
+    private LocalDate data_utworzenia;
     private String typ_nabycia;
 
     private int cena;
     private int id_salon_samochodowy;
-    private int id_pojazd;
+    private Salon_samochodowy salon;
+    public Salon_samochodowy getSalon() {
+        return salon;
+    }
 
-    public Oferta(int id_oferta, String data_utworzenia, String typ_nabycia, int cena, int id_salon_samochodowy, int id_pojazd) {
+    public void setSalon(Salon_samochodowy salon) {
+        this.salon = salon;
+    }
+    private int id_pojazd;
+    private Pojazd pojazd;
+
+    public Pojazd getPojazd() {
+        return pojazd;
+    }
+
+    public void setPojazd(Pojazd pojazd) {
+        this.pojazd = pojazd;
+    }
+
+    public Oferta(int id_oferta, LocalDate data_utworzenia, String typ_nabycia, int cena, int id_salon_samochodowy, int id_pojazd) {
         this.id_oferta = id_oferta;
         this.data_utworzenia = data_utworzenia;
         this.typ_nabycia = typ_nabycia;
@@ -26,11 +45,11 @@ public class Oferta {
         this.id_oferta = id_oferta;
     }
 
-    public String getData_utworzenia() {
+    public LocalDate getData_utworzenia() {
         return data_utworzenia;
     }
 
-    public void setData_utworzenia(String data_utworzenia) {
+    public void setData_utworzenia(LocalDate data_utworzenia) {
         this.data_utworzenia = data_utworzenia;
     }
 

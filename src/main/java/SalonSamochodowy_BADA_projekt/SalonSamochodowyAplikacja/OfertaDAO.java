@@ -3,23 +3,67 @@ package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class OfertaDAO {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public OfertaDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<Oferta> listOfertaKupno(){
-        String sql = "SELECT * FROM \"Oferty\" WHERE \"typ_nabycia\" = 'kupno'";
+        String sql = "SELECT o.*, p.*, ss.\"nazwa\" " +
+                "FROM \"Oferty\" o " +
+                "JOIN \"Pojazdy\" p ON o.\"id_pojazd\" = p.\"id_pojazd\" " +
+                "JOIN \"Salony_samochodowe\" ss ON o.\"id_salon_samochodowy\" = ss.\"id_salon_samochodowy\" " +
+                "WHERE o.\"typ_nabycia\" = 'kupno'";
+
+
+        /*      "JOIN \"Modele\" m ON p.\"id_model\" = m.\"id_model\"" +
+
+        */
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            Oferta oferta = new Oferta();
+            oferta.setId_oferta(rs.getInt("id_oferta"));
+            oferta.setData_utworzenia(rs.getDate("data_utworzenia").toLocalDate());
+            oferta.setTyp_nabycia(rs.getString("typ_nabycia"));
+            oferta.setCena(rs.getInt("cena"));
+            oferta.setId_salon_samochodowy(rs.getInt("id_salon_samochodowy"));
+            oferta.setId_pojazd(rs.getInt("id_pojazd"));
+
+            Pojazd pojazd = new Pojazd();
+            pojazd.setId_pojazd(rs.getInt("id_pojazd"));
+            pojazd.setVIN(rs.getString("VIN"));
+            pojazd.setStan(rs.getString("stan"));
+            pojazd.setData_przegladu(rs.getDate("data_przegladu").toLocalDate());
+            pojazd.setPrzebieg(rs.getInt("przebieg"));
+            pojazd.setTyp_paliwa(rs.getString("typ_paliwa"));
+            pojazd.setKolor(rs.getString("kolor"));
+            pojazd.setId_model(rs.getInt("id_model"));
+
+            Salon_samochodowy salon = new Salon_samochodowy();
+            salon.setNazwa(rs.getString("nazwa"));
+
+            oferta.setPojazd(pojazd);
+            oferta.setSalon(salon);
+            return oferta;
+
+        });
+
+        /*String sql = "SELECT * FROM \"Oferty\" WHERE \"typ_nabycia\" = 'kupno'";
 
         List<Oferta> listOferta = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Oferta.class));
 
-        return listOferta;
+        return listOferta;*/
     }
 
     public List<Oferta> listOfertaWypozyczenie(){
