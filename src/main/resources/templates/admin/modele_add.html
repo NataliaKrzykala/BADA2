@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Welcome Page</title>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
 
 </head>
 <body>
@@ -30,10 +30,8 @@
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item active" href="#">Shops</a></a>
-                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="dropdown-item" th:href="@{/salony_admin}">Shops</a></a>
+                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a></a>
                     </div>
                 </li>
 
@@ -42,7 +40,9 @@
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
+                        <a class="dropdown-item" href="#">Car Models</a>
+                        <span class="sr-only">(current)</span>
+                        </a>
                         <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
@@ -65,14 +65,40 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
 
-            <label style="font-size:30px">TUTAJ LADNIE DODAC INFO KONTAKTOWE.</label>
+<div class="container mt-5">
+    <h1 class="text-center">VeloVista Add Car Model</h1>
 
+    <form action="/saveModel" th:action="@{/saveModel}" th:object="${model1}" method="post">
+        <!-- Nie dodajemy pola id_model -->
+
+        <div class="form-group">
+            <label for="nazwa_modelu">Name</label>
+            <input type="text" class="form-control" id="nazwa_modelu" th:field="*{nazwa_modelu}">
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="liczba_drzwi">Number of doors</label>
+            <input type="text" class="form-control" id="liczba_drzwi" th:field="*{liczba_drzwi}">
+        </div>
+
+        <div class="form-group">
+            <label for="moc_silnika">Engine power</label>
+            <input type="text" class="form-control" id="moc_silnika" th:field="*{moc_silnika}">
+        </div>
+
+        <div class="form-group">
+            <label for="spalanie_paliwa">Fuel usage</label>
+            <input type="text" class="form-control" id="spalanie_paliwa" th:field="*{spalanie_paliwa}">
+        </div>
+
+        <div class="form-group">
+            <label for="pojemnosc_bagaznika">Trunk capacity</label>
+            <input type="text" class="form-control" id="pojemnosc_bagaznika" th:field="*{pojemnosc_bagaznika}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -81,3 +107,4 @@
 
 </body>
 </html>
+

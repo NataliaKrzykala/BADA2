@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,12 +32,12 @@ class Salon_samochodowyDAOTest {
             System.out.println(salon.toString());
         }
     }
-//
-//    @Test
-//    void save() {
-//        Salon_samochodowy salon_samochodowy = new Salon_samochodowy(30, "SomeOwner", "10.10.23", "WAuto", 41);
-//        dao.save(salon_samochodowy);
-//    }
+
+    @Test
+   void save() {
+        Salon_samochodowy salon_samochodowy = new Salon_samochodowy(30, "SomeOwner", LocalDate.of(10, 10, 10), "WAuto", 41);
+        dao.save(salon_samochodowy);
+    }
 
     @Test
     void get() {

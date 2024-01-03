@@ -65,6 +65,28 @@
     </div>
 </nav>
 
+<!--<div id="accordion">
+     Iterate over the list of Salon_samochodowy objects and create accordion items dynamically
+    <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
+        <div class="card-header" id="heading${iterStat.index + 1}">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse"
+                        data-target="#collapse${iterStat.index + 1}" aria-expanded="false"
+                        aria-controls="collapse${iterStat.index + 1}">
+                    <span th:text="${salon.nazwa}"></span>
+                </button>
+            </h5>
+        </div>
+        <div id="collapse${iterStat.index + 1}" class="collapse" aria-labelledby="heading${iterStat.index + 1}">
+            <div class="card-body">
+                <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
+                <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
+                 Add other fields as needed
+            </div>
+        </div>
+    </div>
+</div>-->
+
 <div id="accordion">
     <!-- Iterate over the list of Salon_samochodowy objects and create accordion items dynamically -->
     <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
@@ -81,6 +103,7 @@
             <div class="card-body">
                 <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
                 <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
+                <p><strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span></p>
                 <!-- Add other fields as needed -->
             </div>
         </div>
@@ -123,7 +146,6 @@
     <!--<a th:href="@{/salony_delete}" class="btn btn-primary">Delete a shop</a>-->
 </div>
 
-<p>JESTES W SALONY_ADMIN.HTML</p>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

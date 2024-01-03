@@ -5,18 +5,104 @@
     <title>Welcome Page</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f4f4f4;
+            color: #0ee3ff;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 5px;
+            border: none;
+        }
+
+        .navbar-brand {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 15px;
+        }
+
+        .jumbotron {
+            background: #06318f;
+            padding: 100px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .jumbotron h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .jumbotron p {
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+
+        .offer-section {
+            text-align: center;
+            padding: 50px 0;
+            background: #fff;
+            margin-top: -20px;
+            border-top: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .offer-section h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #9edfff;
+        }
+
+        .car-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .car-card img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .action-buttons a {
+            margin-right: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .action-buttons a:hover {
+            background: #23ffe6;
+        }
+    </style>
 
 </head>
 <body>
- <!--th:style="'background: url(../assets/home_background.png) no-repeat center center fixed;'">-->
-
-
-<!--<style th:inline="text">
-    body{
-        background: url(../assets/home_background.png)
-        no-repeat center center fixed;
-    }
-</style>-->
 
 
 <!-- Navigation -->
@@ -75,10 +161,6 @@
     </div>
 </nav>
 
-
-<!--Using images in page    -->
-<!--<img th:src="@{/assets/home.png}" alt="Image" class="img-fluid">-->
- <p>JESTES W INDEX_USER.HTML</p>
 
 <div class="container">
     <div class="row">

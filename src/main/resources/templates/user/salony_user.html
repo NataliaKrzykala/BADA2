@@ -65,6 +65,7 @@
     </div>
 </nav>
 
+
 <div id="accordion">
     <!-- Iterate over the list of Salon_samochodowy objects and create accordion items dynamically -->
     <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
@@ -81,44 +82,13 @@
             <div class="card-body">
                 <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
                 <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
+                <p><strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span></p>
                 <!-- Add other fields as needed -->
             </div>
         </div>
     </div>
 </div>
 
-<!-- Car shops
-<div align="center">
-    <h1>VeloVista Car Shops</h1>
-
-    <table border="1" cellpadding="10">
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Owner</th>
-            <th>Date of starting</th>
-            <th>Name</th>
-            <th>ID Address</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="salon : ${listSalon_samochodowy}">
-            <td th:text="${salon.id_salon_samochodowy}">ID</td>
-            <td th:text="${salon.wlasciciel}">Owner</td>
-            <td th:text="${salon.data_zalozenia}">Date of starting</td>
-            <td th:text="${salon.nazwa}">Name</td>
-            <td th:text="${salon.id_adres}">ID Address</td>
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>-->
-
-<p>JESTES W SALONY_USER.HTML</p>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

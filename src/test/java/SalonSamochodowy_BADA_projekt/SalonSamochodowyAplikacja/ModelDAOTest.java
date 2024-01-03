@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,7 +36,8 @@ public class ModelDAOTest {
 
     @Test
     void save() {
-        fail("Not yet implemented");
+        Model model = new Model(30, "XJR", 5, 364, 12, 41);
+        dao.save(model);
     }
 
     @Test

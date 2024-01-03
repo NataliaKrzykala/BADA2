@@ -65,7 +65,7 @@
     </div>
 </nav>
 
-<!-- Car shops -->
+<!-- Rental offers -->
 <div align="center">
     <h1>Rental offers</h1>
 
@@ -96,7 +96,10 @@
 
 </div>
 
-<p>JESTES W OFERTAWYPOZYCZENIE_ADMIN.HTML</p>
+<div class="container mt-5">
+    <a th:href="@{/ofertaWypozyczenie_add}" class="btn btn-primary">Add a new offer for rental</a>
+    <!--<a th:href="@{/ofertaWypozyczenie_delete}" class="btn btn-primary">Delete an offer for rental</a>-->
+</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

@@ -42,6 +42,9 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/modele_admin").setViewName("modele_admin");
         registry.addViewController("/index_admin").setViewName("index_admin");
         registry.addViewController("/salony_add").setViewName("salony_add");
+        registry.addViewController("/modele_add").setViewName("modele_add");
+        registry.addViewController("/ofertaWypozyczenie_add").setViewName("ofertaWypozyczenie_add");
+        registry.addViewController("/ofertaKupno_add").setViewName("ofertaKupno_add");
     }
 
 
@@ -184,6 +187,19 @@ public class AppController implements WebMvcConfigurer {
         List<SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model> listModel = daoModel.list();
         model.addAttribute("listModel", listModel);
         return "admin/modele_admin";
+    }
+
+    @RequestMapping(value ={"/modele_add"})
+    public String viewModeleAddPage(Model model){
+        SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model model1 = new SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model();
+        model.addAttribute("model1", model1);
+        return "admin/modele_add";
+    }
+
+    @PostMapping("/saveModel")
+    public String saveModel(@ModelAttribute SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model model1) {
+        daoModel.save(model1);
+        return "redirect:/modele_admin";  // Przekierowanie na stronę z listą modeli admina
     }
 
     @RequestMapping(value ={"/salony_add"})

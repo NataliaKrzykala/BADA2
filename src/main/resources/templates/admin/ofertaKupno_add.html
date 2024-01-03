@@ -25,25 +25,25 @@
                     <a class="nav-link" th:href="@{/index_admin}">Home</a></a>
                 </li>
 
-                <li class="nav-item dropdown active">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item active" href="#">Shops</a></a>
-                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="dropdown-item" th:href="@{/salony_admin}">Shops</a></a>
+                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a></a>
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
+                        <a class="dropdown-item active" href="#">Purchase</a>
+                        <span class="sr-only">(current)</span>
+                        </a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
                 </li>
@@ -64,16 +64,6 @@
         </div>
     </div>
 </nav>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
-
-            <label style="font-size:30px">TUTAJ LADNIE DODAC INFO KONTAKTOWE.</label>
-
-        </div>
-    </div>
-</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

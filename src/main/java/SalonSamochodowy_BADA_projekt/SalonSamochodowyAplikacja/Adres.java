@@ -1,5 +1,5 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
-
+//wersja 2
 public class Adres {
 
     private int id_adres;
