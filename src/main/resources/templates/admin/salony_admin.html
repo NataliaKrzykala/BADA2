@@ -1,15 +1,69 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
+    <!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <!-- Bootstrap-datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <meta charset="UTF-8" />
+    <title>VeloVista Car Shops - Admin Dashboard</title>
 
+    <style>
+        /* Custom Styles for Car Shop Cards */
+        .card {
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border-bottom: 1px solid #495057;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin-bottom: 10px;
+        }
+
+        /* Add some spacing and styling to the 'Add a new shop' button */
+        .btn-primary {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
@@ -25,25 +79,25 @@
                     <a class="nav-link" th:href="@{/index_admin}">Home</a></a>
                 </li>
 
-                <li class="nav-item dropdown active">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item active" href="#">Shops</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="dropdown-item" th:href="@{/salony_admin}">Shops</a></a>
                         <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a></a>
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
+                        <a class="dropdown-item active" href="#">Purchase</a>
+                        <span class="sr-only">(current)</span>
+                        </a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
                 </li>
@@ -64,92 +118,29 @@
         </div>
     </div>
 </nav>
-
-<!--<div id="accordion">
-     Iterate over the list of Salon_samochodowy objects and create accordion items dynamically
-    <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
-        <div class="card-header" id="heading${iterStat.index + 1}">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse"
-                        data-target="#collapse${iterStat.index + 1}" aria-expanded="false"
-                        aria-controls="collapse${iterStat.index + 1}">
-                    <span th:text="${salon.nazwa}"></span>
-                </button>
-            </h5>
-        </div>
-        <div id="collapse${iterStat.index + 1}" class="collapse" aria-labelledby="heading${iterStat.index + 1}">
-            <div class="card-body">
-                <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
-                <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
-                 Add other fields as needed
-            </div>
-        </div>
+    <div class="container text-center">
+        <a href="/salony_add" class="btn-primary">Add a new shop</a>
     </div>
-</div>-->
 
-<div id="accordion">
-    <!-- Iterate over the list of Salon_samochodowy objects and create accordion items dynamically -->
+
+<!-- Content container -->
+<div class="container">
+    <!-- Iterate over the list of Salon_samochodowy objects and create card items -->
     <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
-        <div class="card-header" id="heading${iterStat.index + 1}">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse"
-                        data-target="#collapse${iterStat.index + 1}" aria-expanded="false"
-                        aria-controls="collapse${iterStat.index + 1}">
-                    <span th:text="${salon.nazwa}"></span>
-                </button>
-            </h5>
-        </div>
-        <div id="collapse${iterStat.index + 1}" class="collapse" aria-labelledby="heading${iterStat.index + 1}">
-            <div class="card-body">
-                <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
-                <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
-                <p><strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span></p>
-                <!-- Add other fields as needed -->
-            </div>
+        <div class="card-header" th:text="${salon.nazwa}"></div>
+        <div class="card-body">
+            <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
+            <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
+            <p><strong>Address:</strong> <span
+                    th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span>
+            </p>
+            <button class="btn btn-danger" >Delete</button>
         </div>
     </div>
 </div>
 
-<!-- Car shops
-<div align="center">
-    <h1>VeloVista Car Shops</h1>
 
-    <table border="1" cellpadding="10">
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Owner</th>
-            <th>Date of starting</th>
-            <th>Name</th>
-            <th>ID Address</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="salon : ${listSalon_samochodowy}">
-            <td th:text="${salon.id_salon_samochodowy}">ID</td>
-            <td th:text="${salon.wlasciciel}">Owner</td>
-            <td th:text="${salon.data_zalozenia}">Date of starting</td>
-            <td th:text="${salon.nazwa}">Name</td>
-            <td th:text="${salon.id_adres}">ID Address</td>
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>-->
-
-<div class="container mt-5">
-    <a th:href="@{/salony_add}" class="btn btn-primary">Add a new shop</a>
-    <!--<a th:href="@{/salony_delete}" class="btn btn-primary">Delete a shop</a>-->
-</div>
-
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
 </body>
+
 </html>

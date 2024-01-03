@@ -1,8 +1,8 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -48,17 +48,37 @@ public class Salon_samochodowyDAO {
     }
 
     public void save(Salon_samochodowy salon_samochodowy) {
-        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+        // Step 1: Insert Adres and retrieve generated key
+        SimpleJdbcInsert insertAdres = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("\"Adresy\"")
+                .usingColumns("\"miejscowosc\"", "\"ulica\"", "\"nr_lokalu\"", "\"id_poczta\"")
+                .usingGeneratedKeyColumns("\"id_adres\"");
+
+        // Create parameters map for Adres
+        Map<String, Object> adresParameters = new HashMap<>();
+        adresParameters.put("\"miejscowosc\"", salon_samochodowy.getAdres().getMiejscowosc());
+        adresParameters.put("\"ulica\"", salon_samochodowy.getAdres().getUlica());
+        adresParameters.put("\"nr_lokalu\"", salon_samochodowy.getAdres().getNr_lokalu());
+        adresParameters.put("\"id_poczta\"", salon_samochodowy.getAdres().getId_poczta());
+
+        Number idAdres = insertAdres.executeAndReturnKey(adresParameters);
+
+        // Set the generated key back to the Adres object
+        salon_samochodowy.getAdres().setId_adres(idAdres.intValue());
+
+        // Step 2: Insert Salon_samochodowy using the generated Adres key
+        SimpleJdbcInsert insertSalon = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("\"Salony_samochodowe\"")
                 .usingColumns("\"wlasciciel\"", "\"data_zalozenia\"", "\"nazwa\"", "\"id_adres\"");
 
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("\"wlasciciel\"", salon_samochodowy.getWlasciciel());
-        parameters.put("\"data_zalozenia\"", salon_samochodowy.getData_zalozenia());
-        parameters.put("\"nazwa\"", salon_samochodowy.getNazwa());
-        parameters.put("\"id_adres\"", salon_samochodowy.getId_adres());
+        // Create parameters map for Salon_samochodowy
+        Map<String, Object> salonParameters = new HashMap<>();
+        salonParameters.put("\"wlasciciel\"", salon_samochodowy.getWlasciciel());
+        salonParameters.put("\"data_zalozenia\"", salon_samochodowy.getData_zalozenia());
+        salonParameters.put("\"nazwa\"", salon_samochodowy.getNazwa());
+        salonParameters.put("\"id_adres\"", idAdres);
 
-        simpleJdbcInsert.execute(parameters);
+        insertSalon.execute(salonParameters);
     }
 
     public Salon_samochodowy get(int id) {
@@ -70,7 +90,5 @@ public class Salon_samochodowyDAO {
         // Implementacja aktualizacji danych salonu (możesz dodać, gdy jest taka potrzeba)
     }
 
-    public void delete(int id) {
-        // Implementacja usuwania salonu (możesz dodać, gdy jest taka potrzeba)
-    }
+
 }
