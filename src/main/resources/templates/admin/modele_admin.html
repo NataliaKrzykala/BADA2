@@ -48,6 +48,10 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pracownicy}">Staff</a></a>
+                </li>
+
             </ul>
 
             <ul class="navbar-nav">
@@ -75,10 +79,10 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Door</th>
-            <th>HP</th>
-            <th>Fuel usage</th>
-            <th>Trunk capacity</th>
+            <th>Number of doors</th>
+            <th>Engine power (HP)</th>
+            <th>Fuel usage (l/100km)</th>
+            <th>Trunk capacity (l)</th>
 
 
         </tr>
@@ -88,10 +92,10 @@
         <tr th:each="model : ${listModel}">
             <td th:text="${model.id_model}">ID</td>
             <td th:text="${model.nazwa_modelu}">Name</td>
-            <td th:text="${model.liczba_drzwi}">Door</td>
-            <td th:text="${model.moc_silnika}">HP</td>
-            <td th:text="${model.spalanie_paliwa}">Fuel usage</td>
-            <td th:text="${model.pojemnosc_bagaznika}">Trunk capacity</td>
+            <td th:text="${model.liczba_drzwi}">Number of doors</td>
+            <td th:text="${model.moc_silnika}">Engine power (HP)</td>
+            <td th:text="${model.spalanie_paliwa}">Fuel usage (l/100km)</td>
+            <td th:text="${model.pojemnosc_bagaznika}">Trunk capacity (l)</td>
         </tr>
         </tbody>
 

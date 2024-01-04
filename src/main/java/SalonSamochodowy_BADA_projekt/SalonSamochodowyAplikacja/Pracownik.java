@@ -1,5 +1,9 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 public class Pracownik {
 
     private int id_pracownik;
@@ -8,14 +12,16 @@ public class Pracownik {
     private String pesel;
     private float wynagrodzenie;
     private String numer_telefonu;
-    private String data_zatrudnienia;
-    private String data_zwolnienia;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate data_zatrudnienia;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate data_zwolnienia;
     private String email;
     private int id_salon_samochodowy;
     private int id_stanowiska;
     private int id_adres;
 
-    public Pracownik(int id_pracownik, String imie, String nazwisko, String pesel, float wynagrodzenie, String numer_telefonu, String data_zatrudnienia, String data_zwolnienia, String email, int id_salon_samochodowy, int id_stanowiska, int id_adres) {
+    public Pracownik(int id_pracownik, String imie, String nazwisko, String pesel, float wynagrodzenie, String numer_telefonu, LocalDate data_zatrudnienia, LocalDate data_zwolnienia, String email, int id_salon_samochodowy, int id_stanowiska, int id_adres) {
         this.id_pracownik = id_pracownik;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -28,6 +34,33 @@ public class Pracownik {
         this.id_salon_samochodowy = id_salon_samochodowy;
         this.id_stanowiska = id_stanowiska;
         this.id_adres = id_adres;
+    }
+
+    private Adres adres;
+
+    public Adres getAdres() {
+        return adres;
+    }
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
+
+    private Stanowisko stanowisko;
+    public Stanowisko getStanowisko() {
+        return stanowisko;
+    }
+
+    public void setStanowisko(Stanowisko stanowisko) {
+        this.stanowisko = stanowisko;
+    }
+    private Salon_samochodowy salon_samochodowy;
+    public Salon_samochodowy getSalon_samochodowy() {
+        return salon_samochodowy;
+    }
+
+    public void setSalon_samochodowy(Salon_samochodowy salon_samochodowy) {
+        this.salon_samochodowy = salon_samochodowy;
     }
 
     public int getId_pracownik() {
@@ -78,19 +111,19 @@ public class Pracownik {
         this.numer_telefonu = numer_telefonu;
     }
 
-    public String getData_zatrudnienia() {
+    public LocalDate getData_zatrudnienia() {
         return data_zatrudnienia;
     }
 
-    public void setData_zatrudnienia(String data_zatrudnienia) {
+    public void setData_zatrudnienia(LocalDate data_zatrudnienia) {
         this.data_zatrudnienia = data_zatrudnienia;
     }
 
-    public String getData_zwolnienia() {
+    public LocalDate getData_zwolnienia() {
         return data_zwolnienia;
     }
 
-    public void setData_zwolnienia(String data_zwolnienia) {
+    public void setData_zwolnienia(LocalDate data_zwolnienia) {
         this.data_zwolnienia = data_zwolnienia;
     }
 
@@ -142,6 +175,11 @@ public class Pracownik {
                 ", id_stanowiska=" + id_stanowiska +
                 ", id_adres=" + id_adres +
                 '}';
+    }
+
+    public Pracownik()
+    {
+
     }
 
 }

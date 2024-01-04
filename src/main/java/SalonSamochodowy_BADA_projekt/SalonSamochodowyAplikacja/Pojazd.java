@@ -1,5 +1,7 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Pojazd {
@@ -8,6 +10,7 @@ public class Pojazd {
     private String VIN;
     private String numer_rejestracyjny;
     private String stan;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_przegladu;
     private int przebieg;
     private String typ_paliwa;

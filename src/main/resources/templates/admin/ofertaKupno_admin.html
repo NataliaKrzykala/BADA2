@@ -6,7 +6,63 @@
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
+    <!-- Bootstrap-datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <meta charset="UTF-8" />
+    <title>VeloVista Purchase Offers - Admin Dashboard</title>
+
+    <style>
+        /* Custom Styles for Offer Cards */
+        .card {
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border-bottom: 1px solid #495057;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin-bottom: 10px;
+        }
+
+        /* Add some spacing and styling to the 'Add a new shop' button */
+        .btn-primary {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
 
 <!-- Navigation -->
@@ -48,6 +104,10 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pracownicy}">Staff</a></a>
+                </li>
+
             </ul>
 
             <ul class="navbar-nav">
@@ -65,7 +125,7 @@
     </div>
 </nav>
 
-<!-- Purchase offers -->
+<!-- Purchase offers
 <div align="center">
     <h1>Purchase offers</h1>
 
@@ -77,10 +137,20 @@
             <th>When created</th>
             <th>Price</th>
             <th>Which shop</th>
-            <th>Which car</th>
-            <th>Which model</th>
+            <th>Which car model</th>
+            <th>State of car</th>
+
+            <th>Number of doors</th>
+            <th>Engine power (HP)</th>
+            <th>Fuel usage (l/100km)</th>
+            <th>Trunk capacity (l)</th>
+
             <th>VIN</th>
-            <th>Name of shop</th>
+            <th>Registration number</th>
+            <th>Date of last technical inspection</th>
+            <th>Mileage</th>
+            <th>Type of fuel</th>
+            <th>Colour</th>
 
         </tr>
         </thead>
@@ -90,22 +160,92 @@
             <td th:text="${oferta.id_oferta}">ID</td>
             <td th:text="${oferta.data_utworzenia}">When created</td>
             <td th:text="${oferta.cena}">Price</td>
-            <td th:text="${oferta.id_salon_samochodowy}">Which shop</td>
-            <td th:text="${oferta.id_pojazd}">Which car</td>
-            <td th:text="${oferta.pojazd.id_model}">Which model</td>
+            <td th:text="${oferta.salon.nazwa}">Which shop</td>
+            <td th:text="${oferta.model.nazwa_modelu}">Which car model</td>
+            <td th:text="${oferta.pojazd.stan}">State of car</td>
+
+            This section should be available on sth like "see more details about model"
+
+            <td th:text="${oferta.model.liczba_drzwi}">Number of doors</td>
+            <td th:text="${oferta.model.moc_silnika}">Engine power (HP)</td>
+            <td th:text="${oferta.model.spalanie_paliwa}">Fuel usage (l/100km)</td>
+            <td th:text="${oferta.model.pojemnosc_bagaznika}">Trunk capacity (l)</td>
+
+            This section should be available on sth like "see more details about car"
+
             <td th:text="${oferta.pojazd.VIN}">VIN</td>
-            <td th:text="${oferta.salon.nazwa}">Name of shop</td>
+            <td th:text="${oferta.pojazd.numer_rejestracyjny}">Registration number</td>
+            <td th:text="${oferta.pojazd.data_przegladu}">Date of last technical inspection</td>
+            <td th:text="${oferta.pojazd.przebieg}">Mileage</td>
+            <td th:text="${oferta.pojazd.typ_paliwa}">Type of fuel</td>
+            <td th:text="${oferta.pojazd.kolor}">Colour</td>
         </tr>
         </tbody>
 
     </table>
 
-</div>
+</div>-->
 
 <div class="container mt-5">
     <a th:href="@{/ofertaKupno_add}" class="btn btn-primary">Add a new offer for purchase</a>
     <!--<a th:href="@{/ofertaKupno_delete}" class="btn btn-primary">Delete an offer for purchase</a>-->
 </div>
+
+<div class="container">
+
+    <div th:each="oferta, iterStat : ${listOfertaKupno}" class="card">
+        <div class="card-header" th:text="${oferta.model.nazwa_modelu}"></div>
+        <div class="card-body">
+            <p><strong>Price:</strong> <span th:text="${oferta.cena}"></span></p>
+            <p><strong>When created:</strong> <span th:text="${oferta.data_utworzenia}"></span></p>
+            <p><strong>Which shop:</strong> <span th:text="${oferta.salon.nazwa}"></span></p>
+
+            <!-- "see more about model" button -->
+            <p>
+                <button class="btn btn-primary" onclick="toggleDetails('model-details')">See more details about car model</button>
+            </p>
+            <p id="model-details" class="details" style="display: none;">
+                <strong>Number of doors:</strong> <span th:text="${oferta.model.liczba_drzwi}"></span>
+                <strong>Engine power (HP):</strong> <span th:text="${oferta.model.moc_silnika}"></span>
+                <strong>Fuel usage (l/100km):</strong> <span th:text="${oferta.model.spalanie_paliwa}"></span>
+                <strong>Trunk capacity (l):</strong> <span th:text="${oferta.model.pojemnosc_bagaznika}"></span>
+            </p>
+
+            <!-- "see more about car" button -->
+            <p>
+                <button class="btn btn-primary" onclick="toggleDetails('car-details')">See more details about car </button>
+            </p>
+            <p id="car-details" class="details" style="display: none;">
+                <strong>State of car:</strong> <span th:text="${oferta.pojazd.stan}"></span>
+                <strong>Date of last technical inspection:</strong> <span th:text="${oferta.pojazd.data_przegladu}"></span>
+                <strong>Mileage:</strong> <span th:text="${oferta.pojazd.przebieg}"></span>
+                <strong>Type of fuel:</strong> <span th:text="${oferta.pojazd.typ_paliwa}"></span>
+                <strong>Colour:</strong> <span th:text="${oferta.pojazd.kolor}"></span>
+            </p>
+
+            <!-- "see more about car data" button -->
+            <p>
+                <button class="btn btn-primary" onclick="toggleDetails('car-data-details')">See more details about car data </button>
+            </p>
+            <p id="car-data-details" class="details" style="display: none;">
+                <strong>Registration number:</strong> <span th:text="${oferta.pojazd.numer_rejestracyjny}"></span>
+                <strong>VIN:</strong> <span th:text="${oferta.pojazd.VIN}"></span>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDetails(detailsId) {
+        var detailsElement = document.getElementById(detailsId);
+        if (detailsElement.style.display === 'none' || detailsElement.style.display === '') {
+            detailsElement.style.display = 'block';
+        } else {
+            detailsElement.style.display = 'none';
+        }
+    }
+</script>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

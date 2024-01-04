@@ -1,16 +1,22 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 public class Umowa {
 
     private int id_umowa;
-    private String data_zawarcia;
-    private String data_rozwiazania;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate data_zawarcia;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate data_rozwiazania;
     private float koszt;
     private int id_salon_samochodowy;
     private int id_klient;
     private int id_oferta;
 
-    public Umowa(int id_umowa, String data_zawarcia, String data_rozwiazania, float koszt, int id_salon_samochodowy, int id_klient, int id_oferta) {
+    public Umowa(int id_umowa, LocalDate data_zawarcia, LocalDate data_rozwiazania, float koszt, int id_salon_samochodowy, int id_klient, int id_oferta) {
         this.id_umowa = id_umowa;
         this.data_zawarcia = data_zawarcia;
         this.data_rozwiazania = data_rozwiazania;
@@ -28,19 +34,19 @@ public class Umowa {
         this.id_umowa = id_umowa;
     }
 
-    public String getData_zawarcia() {
+    public LocalDate getData_zawarcia() {
         return data_zawarcia;
     }
 
-    public void setData_zawarcia(String data_zawarcia) {
+    public void setData_zawarcia(LocalDate data_zawarcia) {
         this.data_zawarcia = data_zawarcia;
     }
 
-    public String getData_rozwiazania() {
+    public LocalDate getData_rozwiazania() {
         return data_rozwiazania;
     }
 
-    public void setData_rozwiazania(String data_rozwiazania) {
+    public void setData_rozwiazania(LocalDate data_rozwiazania) {
         this.data_rozwiazania = data_rozwiazania;
     }
 

@@ -48,6 +48,7 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/modele_add").setViewName("modele_add");
         registry.addViewController("/ofertaWypozyczenie_add").setViewName("ofertaWypozyczenie_add");
         registry.addViewController("/ofertaKupno_add").setViewName("ofertaKupno_add");
+        registry.addViewController("/pracownicy").setViewName("pracownicy");
     }
 
 
@@ -218,5 +219,13 @@ public class AppController implements WebMvcConfigurer {
         return "redirect:/salony";  // Przekierowanie na stronę z listą salonów
     }
 
+    @Autowired
+    private PracownikDAO daoPracownik;
+    @RequestMapping(value ={"/pracownicy"})
+    public String viewPracownicyPage(Model model){
+        List<Pracownik> listPracownik = daoPracownik.list();
+        model.addAttribute("listPracownik", listPracownik);
+        return "admin/pracownicy";
+    }
 
 }

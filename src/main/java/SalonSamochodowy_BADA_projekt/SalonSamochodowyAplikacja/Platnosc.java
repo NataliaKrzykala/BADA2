@@ -1,15 +1,21 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 public class Platnosc {
 
     private int id_platnosc;
-    private String data_zlecenia;
-    private String data_zaplaty;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate data_zlecenia;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate data_zaplaty;
     private float ile_do_oplacenia;
     private int id_umowa;
     private int id_typ_platnosci;
 
-    public Platnosc(int id_platnosc, String data_zlecenia, String data_zaplaty, float ile_do_oplacenia, int id_umowa, int id_typ_platnosci) {
+    public Platnosc(int id_platnosc, LocalDate data_zlecenia, LocalDate data_zaplaty, float ile_do_oplacenia, int id_umowa, int id_typ_platnosci) {
         this.id_platnosc = id_platnosc;
         this.data_zlecenia = data_zlecenia;
         this.data_zaplaty = data_zaplaty;
@@ -26,19 +32,19 @@ public class Platnosc {
         this.id_platnosc = id_platnosc;
     }
 
-    public String getData_zlecenia() {
+    public LocalDate getData_zlecenia() {
         return data_zlecenia;
     }
 
-    public void setData_zlecenia(String data_zlecenia) {
+    public void setData_zlecenia(LocalDate data_zlecenia) {
         this.data_zlecenia = data_zlecenia;
     }
 
-    public String getData_zaplaty() {
+    public LocalDate getData_zaplaty() {
         return data_zaplaty;
     }
 
-    public void setData_zaplaty(String data_zaplaty) {
+    public void setData_zaplaty(LocalDate data_zaplaty) {
         this.data_zaplaty = data_zaplaty;
     }
 

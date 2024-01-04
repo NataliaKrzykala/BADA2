@@ -9,23 +9,32 @@ public class Oferta {
 
     private int cena;
     private int id_salon_samochodowy;
+    private int id_pojazd;
+
     private Salon_samochodowy salon;
     public Salon_samochodowy getSalon() {
         return salon;
     }
-
     public void setSalon(Salon_samochodowy salon) {
         this.salon = salon;
     }
-    private int id_pojazd;
-    private Pojazd pojazd;
 
+    private Pojazd pojazd;
     public Pojazd getPojazd() {
         return pojazd;
     }
 
     public void setPojazd(Pojazd pojazd) {
         this.pojazd = pojazd;
+    }
+
+    private Model model;
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public Oferta(int id_oferta, LocalDate data_utworzenia, String typ_nabycia, int cena, int id_salon_samochodowy, int id_pojazd) {

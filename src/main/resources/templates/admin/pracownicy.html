@@ -2,106 +2,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+    <!-- Bootstrap-datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <meta charset="UTF-8" />
+    <title>VeloVista Staff - Admin Dashboard</title>
+
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background: #f4f4f4;
-            color: #0ee3ff;
+        /* Custom Styles for Car Shop Cards */
+        .card {
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
         }
 
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 5px;
-            border: none;
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .navbar-brand {
-            font-size: 36px;
-            font-weight: bold;
+        .card-header {
+            background-color: #343a40;
             color: #fff;
-        }
-
-        .navbar-toggler-icon {
-            background-color: #fff;
-        }
-
-        .navbar-nav .nav-item {
-            margin-right: 15px;
-        }
-
-        .jumbotron {
-            background: #06318f;
-            padding: 100px 0;
-            text-align: center;
-            color: #fff;
-        }
-
-        .jumbotron h1 {
-            font-size: 60px;
+            font-size: 1.2em;
             font-weight: bold;
-            margin-bottom: 30px;
+            padding: 15px;
+            border-bottom: 1px solid #495057;
+            border-radius: 8px 8px 0 0;
         }
 
-        .jumbotron p {
-            font-size: 24px;
-            margin-bottom: 50px;
-        }
-
-        .offer-section {
-            text-align: center;
-            padding: 50px 0;
-            background: #fff;
-            margin-top: -20px;
-            border-top: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
-        }
-
-        .offer-section h2 {
-            font-size: 42px;
-            margin-bottom: 30px;
-            color: #9edfff;
-        }
-
-        .car-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+        .card-body {
             padding: 20px;
-            margin-bottom: 20px;
         }
 
-        .car-card img {
-            max-width: 100%;
-            border-radius: 5px;
-            margin-bottom: 15px;
+        .card-body p {
+            margin-bottom: 10px;
         }
 
-        .action-buttons {
+        /* Add some spacing and styling to the 'Add a new shop' button */
+        .btn-primary {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
             text-align: center;
-            margin-top: 50px;
-        }
-
-        .action-buttons a {
-            margin-right: 20px;
-            font-size: 18px;
             text-decoration: none;
+            background-color: #007bff;
             color: #fff;
-            padding: 15px 30px;
             border-radius: 5px;
-            transition: background 0.3s ease;
+            transition: background-color 0.3s ease-in-out;
         }
 
-        .action-buttons a:hover {
-            background: #23ffe6;
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
     </style>
-
 </head>
+
 <body>
 
 <!-- Navigation -->
@@ -116,10 +76,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/index_admin}">Home</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -143,8 +101,10 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/pracownicy}">Staff</a></a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Staff</a>
+                    <span class="sr-only">(current)</span>
+                    </a>
                 </li>
 
             </ul>
@@ -165,28 +125,26 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
 
-            <label style="font-size:30px">VeloVista - where innovation meets elegance on the open road.</label>
-            <label style="font-size:30px" th:inline="text">Welcome <a
-                    style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!
-            </label>
-
+    <div th:each="pracownik, iterStat : ${listPracownik}" class="card">
+        <div class="card-header" th:text="${pracownik.nazwisko + ' ' + pracownik.imie}"></div>
+        <div class="card-body">
+            <p><strong>Position:</strong> <span th:text="${pracownik.stanowisko.nazwa_stanowiska}"></span></p>
+            <p><strong>Car shop:</strong> <span th:text="${pracownik.salon_samochodowy.nazwa}"></span></p>
+            <p><strong>Address:</strong> <span
+                    th:text="${pracownik.adres.miejscowosc + ', ' + pracownik.adres.ulica + ' ' + pracownik.adres.nr_lokalu + ', ' + pracownik.adres.kod_poczty + ' ' + pracownik.adres.poczta}"></span>
+            </p>
+            <button class="btn btn-danger" >Modify</button>
+            <button class="btn btn-danger" >Delete</button>
         </div>
     </div>
 </div>
 
-<div class="list-group">
-    <a th:href="@{/salony_add}" class="list-group-item list-group-item-action">Add a new car shop</a>
-    <a th:href="@{/modele_add}" class="list-group-item list-group-item-action">Add a new car model</a>
-    <a th:href="@{/ofertaKupno_add}" class="list-group-item list-group-item-action">Add a new purchase offer</a>
-    <a th:href="@{/ofertaWypozyczenie_add}" class="list-group-item list-group-item-action">Add a new rental purchase</a>
-</div>
 
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+
+<!--<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>-->
 
 </body>
 </html>
