@@ -13,7 +13,7 @@ public class PracownikDAOTest {
 
     private PracownikDAO dao;
 
-    @BeforeEach
+    /*@BeforeEach
     void setUp() throws Exception {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
@@ -22,7 +22,7 @@ public class PracownikDAOTest {
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 
         dao = new PracownikDAO(new JdbcTemplate(dataSource));
-    }
+    }*/
 
     @Test
     void list() {

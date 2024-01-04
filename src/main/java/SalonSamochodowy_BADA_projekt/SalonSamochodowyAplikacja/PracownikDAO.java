@@ -18,6 +18,7 @@ public class PracownikDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
     public List<Pracownik> list(){
         String sql = "SELECT p.*, s.*, ss.*, po.*, a.* " +
                 "FROM \"Pracownicy\" p " +

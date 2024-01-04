@@ -229,9 +229,13 @@ public class AppController implements WebMvcConfigurer {
         return "admin/pracownicy";
     }
 
+    @Autowired
+    private StanowiskoDAO stanowiskoDAO;
     @RequestMapping(value ={"/pracownicy_add"})
     public String viewPracownicyAddPage(Model model){
         Pracownik pracownik = new Pracownik();
+        List<Stanowisko> stanowiska = stanowiskoDAO.list();
+        model.addAttribute("stanowiska", stanowiska);
         model.addAttribute("pracownik", pracownik);
         return "admin/pracownicy_add";
     }
