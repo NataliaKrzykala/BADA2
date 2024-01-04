@@ -1,5 +1,7 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Oferta {
@@ -54,6 +56,7 @@ public class Oferta {
         this.id_oferta = id_oferta;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_utworzenia() {
         return data_utworzenia;
     }

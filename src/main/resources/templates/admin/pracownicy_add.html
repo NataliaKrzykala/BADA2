@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>VeloVista - Add Car Shop</title>
 
-    <!-- Bootstrap CSS -->
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
     <!-- Bootstrap-datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <meta charset="UTF-8" />
+    <title>VeloVista New Employee - Admin Dashboard</title>
 
     <style>
         body {
@@ -69,8 +69,10 @@
         }
     </style>
 </head>
+
 <body>
 
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
@@ -83,7 +85,7 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index_admin}">Home</a></a>
+                    <a class="nav-link" th:href="@{/index_admin}">Home</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -96,21 +98,21 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown active">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
-                        <a class="dropdown-item active" href="#">Purchase</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/pracownicy}">Staff</a></a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Staff</a>
+                    <span class="sr-only">(current)</span>
+                    </a>
                 </li>
 
             </ul>
@@ -131,18 +133,38 @@
 </nav>
 
 <div class="container mt-5">
-    <h1 class="text-center">VeloVista Add Car Shop</h1>
+    <h1 class="text-center">VeloVista Add Employee</h1>
 
-    <form action="/save" th:action="@{/save}" th:object="${salon_samochodowy}" method="post" class="col-md-6 mx-auto">
+    <form action="/savePracownik" th:action="@{/savePracownik}" th:object="${pracownik}" method="post" class="col-md-6 mx-auto">
         <div class="form-group">
-            <label for="wlasciciel">Owner</label>
-            <input type="text" class="form-control" id="wlasciciel" th:field="*{wlasciciel}">
+            <label for="imie">Name</label>
+            <input type="text" class="form-control" id="imie" th:field="*{imie}">
         </div>
 
         <div class="form-group">
-            <label for="data_zalozenia">Date of starting</label>
+            <label for="imie">Surname</label>
+            <input type="text" class="form-control" id="nazwisko" th:field="*{nazwisko}">
+        </div>
+
+        <div class="form-group">
+            <label for="pesel">PESEL</label>
+            <input type="text" class="form-control" id="pesel" th:field="*{pesel}">
+        </div>
+
+        <div class="form-group">
+            <label for="wynagrodzenie">Salary</label>
+            <input type="text" class="form-control" id="wynagrodzenie" th:field="*{wynagrodzenie}">
+        </div>
+
+        <div class="form-group">
+            <label for="numer_telefonu">Phone number</label>
+            <input type="text" class="form-control" id="numer_telefonu" th:field="*{numer_telefonu}">
+        </div>
+
+        <div class="form-group">
+            <label for="data_zatrudnienia">Date of employment</label>
             <div class="input-group date">
-                <input type="text" class="form-control" id="data_zalozenia" th:field="*{data_zalozenia}" autocomplete="off">
+                <input type="text" class="form-control" id="data_zatrudnienia" th:field="*{data_zatrudnienia}" autocomplete="off">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
@@ -150,8 +172,28 @@
         </div>
 
         <div class="form-group">
-            <label for="nazwa">Name of the shop</label>
-            <input type="text" class="form-control" id="nazwa" th:field="*{nazwa}">
+            <label for="data_zwolnienia">Date of dismissal</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="data_zwolnienia" th:field="*{data_zwolnienia}" autocomplete="off">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_salon_samochodowy">Car shop ID</label>
+            <input type="text" class="form-control" id="id_salon_samochodowy" th:field="*{id_salon_samochodowy}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_stanowiska">Position ID</label>
+            <input type="text" class="form-control" id="id_stanowiska" th:field="*{id_stanowiska}">
         </div>
 
         <div class="form-group">
@@ -179,6 +221,8 @@
     </form>
 </div>
 
+
+
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -192,5 +236,7 @@
         });
     });
 </script>
+
 </body>
 </html>
+

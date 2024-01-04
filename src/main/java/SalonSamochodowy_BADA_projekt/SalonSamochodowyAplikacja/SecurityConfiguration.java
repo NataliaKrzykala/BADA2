@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/", "/index", "/ofertaKupno").permitAll()
                     .antMatchers("/resources/static.js/**").permitAll()
                     .antMatchers("/main").authenticated()
-                    .antMatchers("/main_admin", "/index_admin", "/salony_admin", "/ofertaKupno_admin", "/ofertaWypozyczenie_admin", "/modele_admin", "/modele_add", "/kontakt_admin", "/salony_add", "/pracownicy").access("hasRole('ADMIN')")
+                    .antMatchers("/main_admin", "/index_admin", "/salony_admin", "/ofertaKupno_admin", "/ofertaWypozyczenie_admin", "/modele_admin", "/modele_add", "/kontakt_admin", "/salony_add", "/pracownicy", "/pracownicy_add").access("hasRole('ADMIN')")
                     .antMatchers("/main_user", "/index_user", "/salony_user", "/ofertaKupno_user", "/ofertaWypozyczenie_user", "/modele_user", "/kontakt_user").access("hasRole('USER')")
                     .and()
                 .formLogin()

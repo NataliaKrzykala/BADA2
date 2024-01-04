@@ -124,6 +124,10 @@
     </div>
 </nav>
 
+<div class="container text-center">
+    <a href="/pracownicy_add" class="btn-primary">Add a new employee</a>
+</div>
+
 <div class="container">
 
     <div th:each="pracownik, iterStat : ${listPracownik}" class="card">
@@ -134,7 +138,7 @@
             <p><strong>Address:</strong> <span
                     th:text="${pracownik.adres.miejscowosc + ', ' + pracownik.adres.ulica + ' ' + pracownik.adres.nr_lokalu + ', ' + pracownik.adres.kod_poczty + ' ' + pracownik.adres.poczta}"></span>
             </p>
-            <button class="btn btn-danger" >Modify</button>
+            <!--<button class="btn btn-danger" >Modify</button>-->
             <button class="btn btn-danger" >Delete</button>
         </div>
     </div>

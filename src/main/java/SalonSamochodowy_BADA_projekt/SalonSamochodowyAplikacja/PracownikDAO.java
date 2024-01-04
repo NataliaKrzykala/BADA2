@@ -2,9 +2,12 @@ package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PracownikDAO {
@@ -69,6 +72,45 @@ public class PracownikDAO {
 
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Pracownik pracownik) {
+        // Step 1: Insert Adres and retrieve generated key
+        SimpleJdbcInsert insertAdres = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("\"Adresy\"")
+                .usingColumns("\"miejscowosc\"", "\"ulica\"", "\"nr_lokalu\"", "\"id_poczta\"")
+                .usingGeneratedKeyColumns("\"id_adres\"");
+
+        // Create parameters map for Adres
+        Map<String, Object> adresParameters = new HashMap<>();
+        adresParameters.put("\"miejscowosc\"", pracownik.getAdres().getMiejscowosc());
+        adresParameters.put("\"ulica\"", pracownik.getAdres().getUlica());
+        adresParameters.put("\"nr_lokalu\"", pracownik.getAdres().getNr_lokalu());
+        adresParameters.put("\"id_poczta\"", pracownik.getAdres().getId_poczta());
+
+        Number idAdres = insertAdres.executeAndReturnKey(adresParameters);
+
+        // Set the generated key back to the Adres object
+        pracownik.getAdres().setId_adres(idAdres.intValue());
+
+        // Step 2: Insert Pracownik using the generated Adres key
+        SimpleJdbcInsert insertSalon = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("\"Pracownicy\"")
+                .usingColumns("\"imie\"", "\"nazwisko\"", "\"pesel\"", "\"wynagrodzenie\"", "\"numer_telefonu\"", "\"data_zatrudnienia\"", "\"data_zwolnienia\"", "\"email\"", "\"id_salon_samochodowy\"", "\"id_stanowiska\"", "\"id_adres\"");
+
+        // Create parameters map for Pracownik
+        Map<String, Object> pracownikParameters = new HashMap<>();
+        pracownikParameters.put("\"imie\"", pracownik.getImie());
+        pracownikParameters.put("\"nazwisko\"", pracownik.getNazwisko());
+        pracownikParameters.put("\"pesel\"", pracownik.getPesel());
+        pracownikParameters.put("\"wynagrodzenie\"", pracownik.getWynagrodzenie());
+        pracownikParameters.put("\"numer_telefonu\"", pracownik.getNumer_telefonu());
+        pracownikParameters.put("\"data_zatrudnienia\"", pracownik.getData_zatrudnienia());
+        pracownikParameters.put("\"data_zwolnienia\"", pracownik.getData_zwolnienia());
+        pracownikParameters.put("\"email\"", pracownik.getEmail());
+        pracownikParameters.put("\"id_salon_samochodowy\"", pracownik.getId_salon_samochodowy());
+        pracownikParameters.put("\"id_stanowiska\"", pracownik.getId_stanowiska());
+        pracownikParameters.put("\"id_adres\"", idAdres);
+
+        insertSalon.execute(pracownikParameters);
+
     }
 
     /* Read – odczytywanie danych z bazy */

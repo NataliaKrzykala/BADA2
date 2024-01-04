@@ -7,9 +7,7 @@ import java.time.LocalDate;
 public class Platnosc {
 
     private int id_platnosc;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_zlecenia;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_zaplaty;
     private float ile_do_oplacenia;
     private int id_umowa;
@@ -31,7 +29,7 @@ public class Platnosc {
     public void setId_platnosc(int id_platnosc) {
         this.id_platnosc = id_platnosc;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_zlecenia() {
         return data_zlecenia;
     }
@@ -39,7 +37,7 @@ public class Platnosc {
     public void setData_zlecenia(LocalDate data_zlecenia) {
         this.data_zlecenia = data_zlecenia;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_zaplaty() {
         return data_zaplaty;
     }

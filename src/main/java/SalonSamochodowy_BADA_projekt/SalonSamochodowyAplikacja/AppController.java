@@ -49,6 +49,7 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/ofertaWypozyczenie_add").setViewName("ofertaWypozyczenie_add");
         registry.addViewController("/ofertaKupno_add").setViewName("ofertaKupno_add");
         registry.addViewController("/pracownicy").setViewName("pracownicy");
+        registry.addViewController("/pracownicy_add").setViewName("pracownicy_add");
     }
 
 
@@ -216,7 +217,7 @@ public class AppController implements WebMvcConfigurer {
     @PostMapping("/save")
     public String saveSalon(@ModelAttribute Salon_samochodowy salon_samochodowy) {
         dao.save(salon_samochodowy);
-        return "redirect:/salony";  // Przekierowanie na stronę z listą salonów
+        return "redirect:/salony_admin";  // Przekierowanie na stronę z listą salonów
     }
 
     @Autowired
@@ -226,6 +227,19 @@ public class AppController implements WebMvcConfigurer {
         List<Pracownik> listPracownik = daoPracownik.list();
         model.addAttribute("listPracownik", listPracownik);
         return "admin/pracownicy";
+    }
+
+    @RequestMapping(value ={"/pracownicy_add"})
+    public String viewPracownicyAddPage(Model model){
+        Pracownik pracownik = new Pracownik();
+        model.addAttribute("pracownik", pracownik);
+        return "admin/pracownicy_add";
+    }
+
+    @PostMapping("/savePracownik")
+    public String savePracownik(@ModelAttribute Pracownik pracownik) {
+        daoPracownik.save(pracownik);
+        return "redirect:/pracownicy";  // Przekierowanie na stronę z listą pracowników
     }
 
 }

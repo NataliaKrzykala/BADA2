@@ -7,9 +7,7 @@ import java.time.LocalDate;
 public class Umowa {
 
     private int id_umowa;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_zawarcia;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_rozwiazania;
     private float koszt;
     private int id_salon_samochodowy;
@@ -34,6 +32,7 @@ public class Umowa {
         this.id_umowa = id_umowa;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_zawarcia() {
         return data_zawarcia;
     }
@@ -42,6 +41,7 @@ public class Umowa {
         this.data_zawarcia = data_zawarcia;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_rozwiazania() {
         return data_rozwiazania;
     }

@@ -12,9 +12,7 @@ public class Pracownik {
     private String pesel;
     private float wynagrodzenie;
     private String numer_telefonu;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_zatrudnienia;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_zwolnienia;
     private String email;
     private int id_salon_samochodowy;
@@ -110,7 +108,7 @@ public class Pracownik {
     public void setNumer_telefonu(String numer_telefonu) {
         this.numer_telefonu = numer_telefonu;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_zatrudnienia() {
         return data_zatrudnienia;
     }
@@ -118,7 +116,7 @@ public class Pracownik {
     public void setData_zatrudnienia(LocalDate data_zatrudnienia) {
         this.data_zatrudnienia = data_zatrudnienia;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_zwolnienia() {
         return data_zwolnienia;
     }
