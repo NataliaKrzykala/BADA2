@@ -135,9 +135,45 @@
         <div class="card-body">
             <p><strong>Position:</strong> <span th:text="${pracownik.stanowisko.nazwa_stanowiska}"></span></p>
             <p><strong>Car shop:</strong> <span th:text="${pracownik.salon_samochodowy.nazwa}"></span></p>
-            <p><strong>Address:</strong> <span
-                    th:text="${pracownik.adres.miejscowosc + ', ' + pracownik.adres.ulica + ' ' + pracownik.adres.nr_lokalu + ', ' + pracownik.adres.kod_poczty + ' ' + pracownik.adres.poczta}"></span>
-            </p>
+
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                See personal data
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" th:text="${pracownik.nazwisko + ' ' + pracownik.imie}"></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p><strong>PESEL:</strong> <span th:text="${pracownik.pesel}"></span></p>
+                            <p><strong>Salary:</strong> <span th:text="${pracownik.wynagrodzenie}"></span></p>
+                            <p><strong>Phone number:</strong> <span th:text="${pracownik.numer_telefonu}"></span></p>
+                            <p><strong>Date of employment:</strong> <span th:text="${pracownik.data_zatrudnienia}"></span></p>
+                            <p><strong>Date of dismissal:</strong> <span th:text="${pracownik.data_zwolnienia}"></span></p>
+                            <p><strong>Email address:</strong> <span th:text="${pracownik.email}"></span></p>
+                            <p><strong>Address:</strong> <span
+                                    th:text="${pracownik.adres.miejscowosc + ', ' + pracownik.adres.ulica + ' ' + pracownik.adres.nr_lokalu + ', ' + pracownik.adres.kod_poczty + ' ' + pracownik.adres.poczta}"></span>
+                            </p>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
             <!--<button class="btn btn-danger" >Modify</button>-->
             <button class="btn btn-danger" >Delete</button>
         </div>
@@ -146,9 +182,11 @@
 
 
 
-<!--<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>-->
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

@@ -136,19 +136,24 @@
     <h1 class="text-center">VeloVista Add Employee</h1>
 
     <form action="/savePracownik" th:action="@{/savePracownik}" th:object="${pracownik}" method="post" class="col-md-6 mx-auto">
+
+        <div class="container text-center">
+            <p><strong>Personal data</strong></p>
+        </div>
+
         <div class="form-group">
             <label for="imie">Name</label>
-            <input type="text" class="form-control" id="imie" th:field="*{imie}">
+            <input type="text" class="form-control" id="imie" th:field="*{imie}" th:required="true">
         </div>
 
         <div class="form-group">
             <label for="imie">Surname</label>
-            <input type="text" class="form-control" id="nazwisko" th:field="*{nazwisko}">
+            <input type="text" class="form-control" id="nazwisko" th:field="*{nazwisko}" th:required="true">
         </div>
 
         <div class="form-group">
             <label for="pesel">PESEL</label>
-            <input type="text" class="form-control" id="pesel" th:field="*{pesel}">
+            <input type="text" class="form-control" id="pesel" th:field="*{pesel}" th:required="false">
         </div>
 
         <div class="form-group">
@@ -158,7 +163,7 @@
 
         <div class="form-group">
             <label for="numer_telefonu">Phone number</label>
-            <input type="text" class="form-control" id="numer_telefonu" th:field="*{numer_telefonu}">
+            <input type="text" class="form-control" id="numer_telefonu" th:field="*{numer_telefonu}" th:required="false">
         </div>
 
         <div class="form-group">
@@ -174,7 +179,7 @@
         <div class="form-group">
             <label for="data_zwolnienia">Date of dismissal</label>
             <div class="input-group date">
-                <input type="text" class="form-control" id="data_zwolnienia" th:field="*{data_zwolnienia}" autocomplete="off">
+                <input type="text" class="form-control" id="data_zwolnienia" th:field="*{data_zwolnienia}" autocomplete="off" th:required="false">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
@@ -183,12 +188,21 @@
 
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="text" class="form-control" id="email" th:field="*{email}">
+            <input type="text" class="form-control" id="email" th:field="*{email}" th:required="false">
+        </div>
+
+        <div class="container text-center">
+            <p><strong>Workplace data</strong></p>
         </div>
 
         <div class="form-group">
-            <label for="id_salon_samochodowy">Car shop ID</label>
-            <input type="text" class="form-control" id="id_salon_samochodowy" th:field="*{id_salon_samochodowy}">
+            <label for="salon">Car shop ID</label>
+            <select class="form-control" id="salon" name="id_salon_samochodowy" required>
+                <option value="">Select car shop</option>
+                <!-- Iterate over the list of available positions -->
+                <option th:each="salon : ${salony}" th:value="${salon.id_salon_samochodowy}" th:text="${salon.nazwa}"></option>
+            </select>
+            <!--<input type="text" class="form-control" id="id_salon_samochodowy" th:field="*{id_salon_samochodowy}">-->
         </div>
 
         <div class="form-group">
@@ -201,25 +215,29 @@
             <!--<input type="text" class="form-control" id="id_stanowiska" th:field="*{id_stanowiska}">-->
         </div>
 
+        <div class="container text-center">
+            <p><strong>Address data</strong></p>
+        </div>
+
         <div class="form-group">
             <label for="miejscowosc">City</label>
-            <input type="text" class="form-control" id="miejscowosc" th:field="*{adres.miejscowosc}">
+            <input type="text" class="form-control" id="miejscowosc" th:field="*{adres.miejscowosc}" th:required="true">
         </div>
 
         <div class="form-group">
             <label for="ulica">Street</label>
-            <input type="text" class="form-control" id="ulica" th:field="*{adres.ulica}">
+            <input type="text" class="form-control" id="ulica" th:field="*{adres.ulica}" th:required="false">
         </div>
 
         <div class="form-group">
             <label for="nr_lokalu">Apartment/Unit No.</label>
-            <input type="text" class="form-control" id="nr_lokalu" th:field="*{adres.nr_lokalu}">
+            <input type="text" class="form-control" id="nr_lokalu" th:field="*{adres.nr_lokalu}" th:required="true">
         </div>
 
 
         <div class="form-group">
             <label for="id_poczta">Postal Office ID</label>
-            <input type="text" class="form-control" id="id_poczta" th:field="*{adres.id_poczta}">
+            <input type="text" class="form-control" id="id_poczta" th:field="*{adres.id_poczta}" th:required="true">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
