@@ -15,11 +15,14 @@
             font-family: 'Roboto', sans-serif;
             background: #ffffff;
             color: #000000;
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         .navbar {
             background: rgba(0, 0, 0, 0.8);
             border: none;
+            position: relative;
+            z-index: 2; /* Ensure the navbar stays on top */
         }
 
         .navbar-brand {
@@ -32,26 +35,35 @@
             background-color: #fff;
         }
 
-        .navbar-nav .nav-item {
-            margin-right: 10px;
+        .jumbotron video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1; /* Place the video behind other elements */
         }
 
-        .jumbotron {
-            background-image: url("/images/home.png");
-            background-size: cover;
-            background-position: center;
-            padding: 140px 0; /* Increased padding */
+        .jumbotron-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
             color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .jumbotron h1 {
+        .jumbotron-content h1 {
             font-size: 70px; /* Increased font size */
             font-weight: bold;
             margin-bottom: 30px;
         }
 
-        .jumbotron p {
+        .jumbotron-content p {
             font-size: 20px;
             margin-bottom: 30px;
         }
@@ -63,6 +75,8 @@
             margin-top: -20px;
             border-top: 2px solid #ffffff;
             border-bottom: 2px solid #ffffff;
+            position: relative;
+            z-index: 2; /* Ensure the offer section stays on top */
         }
 
         .offer-section h2 {
@@ -105,6 +119,7 @@
         }
     </style>
 </head>
+
 <body>
 
 <!-- Navigation -->
@@ -153,7 +168,10 @@
 
 <!-- Header Section -->
 <div class="jumbotron">
-    <div class="container">
+    <video autoplay muted loop>
+        <source src="/videos/auto.mp4" type="video/mp4">
+    </video>
+    <div class="jumbotron-content container">
         <h1>VeloVista - Where Innovation Meets Elegance on the Open Road</h1>
         <p>If you want to login, click <a th:href="@{/login}"><b>here</b></a> or in the upper right corner.</p>
     </div>

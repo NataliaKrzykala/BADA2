@@ -5,13 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -327,6 +323,12 @@ public class AppController implements WebMvcConfigurer {
     public String deletePracownik(@PathVariable int id) {
         dao.delete3(id);
         return "redirect:/pracownicy";
+    }
+    @GetMapping("/searchSalony")
+    public String searchSalony(@RequestParam String query, Model model) {
+        List<Salon_samochodowy> searchResults = dao.searchSalony(query);
+        model.addAttribute("listSalon_samochodowy", searchResults);
+        return "salony";
     }
 
 }

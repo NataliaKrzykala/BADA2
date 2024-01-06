@@ -102,4 +102,35 @@ public class Salon_samochodowyDAO {
         String sql = "DELETE FROM \"Pracownicy\" WHERE  \"id_pracownik\" = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public List<Salon_samochodowy> searchSalony(String query) {
+        String sql = "SELECT ss.*, a.*, p.* " +
+                "FROM \"Salony_samochodowe\" ss " +
+                "JOIN \"Adresy\" a ON ss.\"id_adres\" = a.\"id_adres\" " +
+                "JOIN \"Poczty\" p ON a.\"id_poczta\" = p.\"id_poczta\" " +
+                "WHERE LOWER(ss.\"nazwa\") LIKE LOWER(?)";
+
+        String searchParam = "%" + query + "%";
+
+        return jdbcTemplate.query(sql, new Object[]{searchParam}, (rs, rowNum) -> {
+            Salon_samochodowy salon = new Salon_samochodowy();
+            salon.setId_salon_samochodowy(rs.getInt("id_salon_samochodowy"));
+            salon.setWlasciciel(rs.getString("wlasciciel"));
+            salon.setData_zalozenia(rs.getDate("data_zalozenia").toLocalDate());
+            salon.setNazwa(rs.getString("nazwa"));
+
+            Adres adres = new Adres();
+            adres.setId_adres(rs.getInt("id_adres"));
+            adres.setMiejscowosc(rs.getString("miejscowosc"));
+            adres.setUlica(rs.getString("ulica"));
+            adres.setNr_lokalu(rs.getString("nr_lokalu"));
+            adres.setKod_poczty(rs.getString("kod_poczty"));
+            adres.setPoczta(rs.getString("poczta"));
+
+            salon.setAdres(adres);
+
+            return salon;
+        });
+    }
+
 }
