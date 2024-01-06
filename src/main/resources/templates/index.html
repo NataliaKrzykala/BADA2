@@ -14,7 +14,7 @@
             padding: 0;
             font-family: 'Roboto', sans-serif;
             background: #ffffff;
-            color: #000000;
+            color: #ffffff;
             overflow: hidden; /* Prevent scrollbars */
         }
 
@@ -71,27 +71,24 @@
         .offer-section {
             text-align: center;
             padding: 30px 0;
-            background: #fff;
-            margin-top: -20px;
-            border-top: 2px solid #ffffff;
-            border-bottom: 2px solid #ffffff;
+            margin-top: -20px; /* Removed background and border properties */
             position: relative;
-            z-index: 2; /* Ensure the offer section stays on top */
-        }
-
-        .offer-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #100f0f;
+            z-index: 2;
+            background: transparent; /* Added transparent background */
         }
 
         .car-card {
-            background: #fff;
-            border: 1px solid #ffffff;
-            border-radius: 10px;
+            background: none; /* Removed background and border properties */
+            border: none;
             padding: 20px;
             margin-bottom: 20px;
         }
+        .offer-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
 
         .car-card img {
             max-width: 100%;
@@ -115,7 +112,7 @@
         }
 
         .action-buttons a:hover {
-            background: #0c0b0b;
+            background: #fff6f6;
         }
     </style>
 </head>
