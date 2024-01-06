@@ -323,6 +323,10 @@ public class AppController implements WebMvcConfigurer {
         dao.delete2(id);
         return "redirect:/modele_admin";
     }
-
+    @RequestMapping(value = "/deletePracownik/{id}")
+    public String deletePracownik(@PathVariable int id) {
+        dao.delete3(id);
+        return "redirect:/pracownicy";
+    }
 
 }

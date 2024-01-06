@@ -98,4 +98,8 @@ public class Salon_samochodowyDAO {
         String sql = "DELETE FROM \"Modele\" WHERE  \"id_model\" = ?";
         jdbcTemplate.update(sql, id);
     }
+    public void delete3(int id) {
+        String sql = "DELETE FROM \"Pracownicy\" WHERE  \"id_pracownik\" = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
