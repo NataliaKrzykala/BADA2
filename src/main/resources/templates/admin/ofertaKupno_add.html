@@ -147,7 +147,6 @@
         <div class="form-group">
             <label for="salon">Car shop </label>
             <select class="form-control" id="salon" name="id_salon_samochodowy" required>
-                <option value="">Select car shop</option>
                 <!-- Iterate over the list of available positions -->
                 <option th:each="salon : ${salony}" th:value="${salon.id_salon_samochodowy}" th:text="${salon.nazwa}"></option>
             </select>
@@ -155,8 +154,12 @@
         </div>
 
         <div class="form-group">
-            <label for="id_pojazd">Car</label>
-            <input type="text" class="form-control" id="id_pojazd" th:field="*{id_pojazd}" th:required="true">
+            <label for="id_pojazd">Car by VIN number</label>
+            <select class="form-control" id="id_pojazd" name="id_pojazd" required>
+                <!-- Iterate over the list of available positions -->
+                <option th:each="pojazd : ${pojazdy}" th:value="${pojazd.id_pojazd}" th:text="${pojazd.VIN}"></option>
+            </select>
+            <!--<input type="text" class="form-control" id="id_pojazd" th:field="*{id_pojazd}" th:required="true">-->
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>

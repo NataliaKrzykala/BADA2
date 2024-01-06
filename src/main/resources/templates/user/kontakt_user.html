@@ -83,48 +83,61 @@
 <body style="background-image: url(/images/home2.png); background-size: cover;">
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/index_user}">Home</a></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/salony}">Shops</a>
-                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a>
+                        <a class="dropdown-item" th:href="@{/salony_user}">Shops</a></a>
+                        <a class="dropdown-item active" href="#">Contact</a>
+                        <span class="sr-only">(current)</span>
+                        </a>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a>
-                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a>
+                        <a class="dropdown-item" th:href="@{/modele_user}">Car Models</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno_user}">Purchase</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_user}">Rental</a></a>
                     </div>
                 </li>
+
             </ul>
+
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a>
+                    <a class="nav-link" th:href="@{/main_user}">Account</a></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
+                            style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
                 </li>
             </ul>
+
         </div>
     </div>
 </nav>
+
 <div class="container">
     <div class="contact-container">
         <div class="contact-info">

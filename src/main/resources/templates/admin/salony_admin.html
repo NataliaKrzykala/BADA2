@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Bootstrap CSS -->
@@ -87,7 +87,7 @@
                         <a class="dropdown-item active" href="#">Shops</a>
                         <span class="sr-only">(current)</span>
                         </a>
-                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a></a>
+                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a></a>
                     </div>
                 </li>
 
@@ -97,9 +97,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" th:href="@{/pojazdy}">Cars</a></a>
-                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a></a>
+                        <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
                 </li>
 
@@ -145,6 +145,10 @@
     </div>
 </div>
 
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <!-- Add a JavaScript function to confirm the deletion -->
 <script>
     function deleteSalon(id) {

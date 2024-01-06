@@ -151,7 +151,10 @@
 
         <div class="form-group">
             <label for="stan">State</label>
-            <input type="text" class="form-control" id="stan" th:field="*{stan}" th:required="true">
+            <select class="form-control" id="stan" th:field="*{stan}" th:required="true">
+                <option value="nowy">New</option>
+                <option value="uzywany">Used</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -171,7 +174,16 @@
 
         <div class="form-group">
             <label for="typ_paliwa">Type of fuel</label>
-            <input type="text" class="form-control" id="typ_paliwa" th:field="*{typ_paliwa}" th:required="true">
+            <select class="form-control" id="typ_paliwa" th:field="*{typ_paliwa}" th:required="true">
+                <option value="diesel">Diesel</option>
+                <option value="elektryczny">Electric</option>
+                <option value="hybrydowy">Hybrid</option>
+                <option value="gaz">Gas</option>
+                <option value="benzyna">Petrol</option>
+                <option value="benzyna-gaz">Petrol-gas</option>
+                <option value="inne">Other</option>
+            </select>
+            <!--<input type="text" class="form-control" id="typ_paliwa" th:field="*{typ_paliwa}" th:required="true">-->
         </div>
 
         <div class="form-group">
@@ -182,7 +194,6 @@
         <div class="form-group">
             <label for="salon">Car model</label>
             <select class="form-control" id="salon" name="id_model" required>
-                <option value="">Select car model</option>
                 <!-- Iterate over the list of available positions -->
                 <option th:each="model : ${modele}" th:value="${model.id_model}" th:text="${model.nazwa_modelu}"></option>
             </select>

@@ -150,6 +150,9 @@ public class AppController implements WebMvcConfigurer {
         return "admin/ofertaKupno_admin";
     }
 
+    @Autowired
+    private PojazdDAO pojazdDAO;
+
     @RequestMapping(value ={"/ofertaKupno_add"})
     public String viewOfertaKupnoAddPage(Model model){
         Oferta oferta = new Oferta();
@@ -157,6 +160,9 @@ public class AppController implements WebMvcConfigurer {
 
         List<Salon_samochodowy> salony = dao.list();
         model.addAttribute("salony", salony);
+
+        List<Pojazd> pojazdy = pojazdDAO.list();
+        model.addAttribute("pojazdy", pojazdy);
 
         return "admin/ofertaKupno_add";
     }
@@ -195,6 +201,9 @@ public class AppController implements WebMvcConfigurer {
 
         List<Salon_samochodowy> salony = dao.list();
         model.addAttribute("salony", salony);
+
+        List<Pojazd> pojazdy = pojazdDAO.list();
+        model.addAttribute("pojazdy", pojazdy);
 
         return "admin/ofertaWypozyczenie_add";
     }
@@ -282,9 +291,6 @@ public class AppController implements WebMvcConfigurer {
         daoPracownik.save(pracownik);
         return "redirect:/pracownicy";  // Przekierowanie na strone z lista pracowników
     }
-
-    @Autowired
-    private PojazdDAO pojazdDAO;
 
     @RequestMapping(value ={"/pojazdy"})
     public String viewPojazdyPage(Model model){
