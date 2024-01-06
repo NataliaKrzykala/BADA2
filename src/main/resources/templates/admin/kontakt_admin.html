@@ -2,80 +2,172 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
+    <title>Contact Us - VeloVista</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+        .navbar {
+            background-color: #2a2a2c;
+        }
 
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+
+        .nav-item {
+            margin-right: 10px;
+        }
+
+        .container {
+            margin-top: 5px;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .contact-info,
+        .contact-form {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        .info-item,
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #23272b;
+        }
+    </style>
 </head>
-<body>
+<body style="background-image: url(/images/home2.png); background-size: cover;">
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index_admin}">Home</a></a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item active" href="#">Shops</a></a>
-                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="dropdown-item" th:href="@{/salony}">Shops</a>
+                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a>
                     </div>
                 </li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/pojazdy}">Cars</a></a>
-                        <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
+                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a>
+                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a>
                     </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/pracownicy}">Staff</a></a>
-                </li>
-
             </ul>
-
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/main_admin}">Account</a></a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
-                            style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+                    <a class="nav-link" th:href="@{/login}">Login</a>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <div class="info-item">
+                <label>Company Name:</label>
+                <p>VeloVista</p>
+            </div>
+            <div class="info-item">
+                <label>Address:</label>
+                <p>Plac Politechniki </p>
+            </div>
+            <div class="info-item">
+                <label>Email:</label>
+                <p>info@velovista.com</p>
+            </div>
+            <div class="info-item">
+                <label>Phone:</label>
+                <p>+69 (123) 456-7890</p>
+            </div>
+            <div class="info-item">
+                <label>Working Hours:</label>
+                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+            </div>
+        </div>
 
-            <label style="font-size:30px">TUTAJ LADNIE DODAC INFO KONTAKTOWE.</label>
-
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
         </div>
     </div>
 </div>

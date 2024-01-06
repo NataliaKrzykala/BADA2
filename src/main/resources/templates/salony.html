@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<head>
+    <meta charset="UTF-8" />
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
 
     <!-- Bootstrap-datepicker CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
     <meta charset="UTF-8" />
     <title>VeloVista Car shops</title>
 
@@ -16,7 +16,7 @@
         }
 
         .navbar {
-            background-color: #343a40;
+            background-color: #292b2d;
         }
 
         .navbar-brand {
@@ -28,7 +28,7 @@
         }
 
         .container {
-            margin-top: 20px;
+            margin-top: 5px;
         }
 
         h1 {
@@ -46,101 +46,131 @@
             color: #495057;
         }
 
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+
+
+        /* Styling for salon cards */
+        .card {
+            width: 18rem;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        .card:hover {
+            transform: scale(1.03);
         }
 
-        .input-group-addon {
-            background-color: #007bff;
-            border-color: #007bff;
+        .card-header {
+            background-color: #495057;
+            color: #000000;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+            background-color: #ffffff;
+            border-radius: 0 0 10px 10px;
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
             color: #ffffff;
         }
 
-        .input-group-addon:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            color: #ffffff;
+        .card-subtitle {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            color: #343a40;
+        }
+
+        .card-link {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
         }
     </style>
 
 </head>
+
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">Home</a></a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkAboutUs" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item active" href="#">Shops</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
-                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a></a>
+                        <a class="dropdown-item" th:href="@{/salony}">Shops</a>
+                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a>
                     </div>
                 </li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkOffer" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a></a>
-                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a></a>
+                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno}">Purchase</a>
+                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a>
                     </div>
                 </li>
-
             </ul>
-
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a></a>
+                    <a class="nav-link" th:href="@{/login}">Login</a>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
 
-<div id="accordion">
-    <!-- Iterate over the list of Salon_samochodowy objects and create accordion items dynamically -->
-    <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
-        <div class="card-header" id="heading${iterStat.index + 1}">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse"
-                        data-target="#collapse${iterStat.index + 1}" aria-expanded="false"
-                        aria-controls="collapse${iterStat.index + 1}">
-                    <span th:text="${salon.nazwa}"></span>
-                </button>
-            </h5>
-        </div>
-        <div id="collapse${iterStat.index + 1}" class="collapse" aria-labelledby="heading${iterStat.index + 1}">
-            <div class="card-body">
-                <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
-                <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
-                <p><strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span></p>
-                <!-- Add other fields as needed -->
+<div class="container">
+    <div class="row">
+        <!-- Iterate over the list of Salon_samochodowy objects and create individual cards dynamically -->
+        <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title" th:text="${salon.nazwa}"></h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-subtitle mb-2 text-muted">
+                        <strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Foundation Date:</strong> <span th:text="${#temporals.format(salon.data_zalozenia, 'dd-MM-yyyy')}"></span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span>
+                    </p>
+                    <!-- Add other fields as needed -->
+
+                    <!-- Sample card links, you can modify them based on your needs -->
+<!--                    <a href="#" class="card-link">Card link</a>-->
+<!--                    <a href="#" class="card-link">Another link</a>-->
+                </div>
             </div>
         </div>
     </div>
@@ -150,6 +180,6 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
-
 </body>
+
 </html>

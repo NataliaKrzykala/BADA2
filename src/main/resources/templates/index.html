@@ -6,24 +6,24 @@
     <title>VeloVista - Where Innovation Meets Elegance</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
-            background: #f4f4f4;
-            color: #0ee3ff;
+            background: #ffffff;
+            color: #000000;
         }
 
         .navbar {
             background: rgba(0, 0, 0, 0.8);
-            padding: 5px;
             border: none;
         }
 
         .navbar-brand {
-            font-size: 36px;
+            font-size: 24px; /* Increased font size */
             font-weight: bold;
             color: #fff;
         }
@@ -33,45 +33,47 @@
         }
 
         .navbar-nav .nav-item {
-            margin-right: 15px;
+            margin-right: 10px;
         }
 
         .jumbotron {
-            background: #06318f;
-            padding: 100px 0;
+            background-image: url("/images/home.png");
+            background-size: cover;
+            background-position: center;
+            padding: 140px 0; /* Increased padding */
             text-align: center;
             color: #fff;
         }
 
         .jumbotron h1 {
-            font-size: 60px;
+            font-size: 70px; /* Increased font size */
             font-weight: bold;
             margin-bottom: 30px;
         }
 
         .jumbotron p {
-            font-size: 24px;
-            margin-bottom: 50px;
+            font-size: 20px;
+            margin-bottom: 30px;
         }
 
         .offer-section {
             text-align: center;
-            padding: 50px 0;
+            padding: 30px 0;
             background: #fff;
             margin-top: -20px;
-            border-top: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
+            border-top: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
         }
 
         .offer-section h2 {
-            font-size: 42px;
-            margin-bottom: 30px;
-            color: #9edfff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #100f0f;
         }
 
         .car-card {
             background: #fff;
-            border: 1px solid #ddd;
+            border: 1px solid #ffffff;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
@@ -99,11 +101,10 @@
         }
 
         .action-buttons a:hover {
-            background: #23ffe6;
+            background: #0c0b0b;
         }
     </style>
 </head>
-
 <body>
 
 <!-- Navigation -->
@@ -155,6 +156,36 @@
     <div class="container">
         <h1>VeloVista - Where Innovation Meets Elegance on the Open Road</h1>
         <p>If you want to login, click <a th:href="@{/login}"><b>here</b></a> or in the upper right corner.</p>
+    </div>
+</div>
+
+<!-- Offer Section -->
+<div class="offer-section">
+    <div class="container">
+        <h2>Our Commitments</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="car-card">
+                    <i class="fas fa-shield-alt fa-3x"></i>
+                    <h4>Reliability</h4>
+                    <p>We ensure reliable and top-notch quality in our products.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <i class="fas fa-thumbs-up fa-3x"></i>
+                    <h4>Good Service</h4>
+                    <p>Our team is dedicated to providing excellent customer service.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <i class="fas fa-cogs fa-3x"></i>
+                    <h4>Another Aspect</h4>
+                    <p>Constantly improving and adapting to meet your needs.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -51,8 +51,6 @@ public class ModelDAO {
     public void update(Model model) {
     }
 
-    /* Delete – wybrany rekord z danym id */
-    public void delete(int id) {
-    }
+
 
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8"/>
     <title>Welcome Page</title>
 
@@ -59,6 +60,16 @@
 
         .btn-primary:hover {
             background-color: #0056b3;
+        }
+
+        .btn-delete {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #f10000;
         }
     </style>
 </head>
@@ -126,71 +137,12 @@
     </div>
 </nav>
 
-<!-- Purchase offers
-<div align="center">
-    <h1>Purchase offers</h1>
 
-    <table border="1" cellpadding="10">
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>When created</th>
-            <th>Price</th>
-            <th>Which shop</th>
-            <th>Which car model</th>
-            <th>State of car</th>
-
-            <th>Number of doors</th>
-            <th>Engine power (HP)</th>
-            <th>Fuel usage (l/100km)</th>
-            <th>Trunk capacity (l)</th>
-
-            <th>VIN</th>
-            <th>Registration number</th>
-            <th>Date of last technical inspection</th>
-            <th>Mileage</th>
-            <th>Type of fuel</th>
-            <th>Colour</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="oferta : ${listOfertaKupno}">
-            <td th:text="${oferta.id_oferta}">ID</td>
-            <td th:text="${oferta.data_utworzenia}">When created</td>
-            <td th:text="${oferta.cena}">Price</td>
-            <td th:text="${oferta.salon.nazwa}">Which shop</td>
-            <td th:text="${oferta.model.nazwa_modelu}">Which car model</td>
-            <td th:text="${oferta.pojazd.stan}">State of car</td>
-
-            This section should be available on sth like "see more details about model"
-
-            <td th:text="${oferta.model.liczba_drzwi}">Number of doors</td>
-            <td th:text="${oferta.model.moc_silnika}">Engine power (HP)</td>
-            <td th:text="${oferta.model.spalanie_paliwa}">Fuel usage (l/100km)</td>
-            <td th:text="${oferta.model.pojemnosc_bagaznika}">Trunk capacity (l)</td>
-
-            This section should be available on sth like "see more details about car"
-
-            <td th:text="${oferta.pojazd.VIN}">VIN</td>
-            <td th:text="${oferta.pojazd.numer_rejestracyjny}">Registration number</td>
-            <td th:text="${oferta.pojazd.data_przegladu}">Date of last technical inspection</td>
-            <td th:text="${oferta.pojazd.przebieg}">Mileage</td>
-            <td th:text="${oferta.pojazd.typ_paliwa}">Type of fuel</td>
-            <td th:text="${oferta.pojazd.kolor}">Colour</td>
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>-->
 
 <div class="container mt-5 text-center">
     <a th:href="@{/ofertaKupno_add}" class="btn btn-primary">Add a new offer for purchase</a>
-    <!--<a th:href="@{/ofertaKupno_delete}" class="btn btn-primary">Delete an offer for purchase</a>-->
 </div>
+
 
 <div class="container">
 
@@ -201,12 +153,23 @@
             <p><strong>When created:</strong> <span th:text="${oferta.data_utworzenia}"></span></p>
             <p><strong>Which shop:</strong> <span th:text="${oferta.salon.nazwa}"></span></p>
 
-            <!-- Button to open the modal for model data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
-                See car model details
-            </button></p>
+            <!-- Buttons to open the modals and delete purchase -->
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
+                    See car models data
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal2-' + ${iterStat.index}">
+                    See car details
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal3-' + ${iterStat.index}">
+                    See car data
+                </button>
+                <button type="button" class="btn btn-danger btn-delete">
+                    Delete purchase
+                </button>
+            </div>
 
-            <!-- The Modal for model data -->
+            <!-- Modal 1 -->
             <div class="modal" th:id="'myModal1-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -233,13 +196,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Button to open the modal for car data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal2-' + ${iterStat.index}">
-                See car details
-            </button></p>
-
-            <!-- The Modal for model data -->
+            <!-- Modal 2 -->
             <div class="modal" th:id="'myModal2-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -267,51 +224,42 @@
                     </div>
                 </div>
             </div>
+                <!-- ... existing code ... -->
+            </div>
 
-            <!-- Button to open the modal for car data - VIN & registration number -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal3-' + ${iterStat.index}">
-                See car data
-            </button></p>
+            <!-- Modal 3 -->
+        <div class="modal" th:id="'myModal3-' + ${iterStat.index}">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-            <!-- The Modal for model data -->
-            <div class="modal" th:id="'myModal3-' + ${iterStat.index}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Car data</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <p><strong>Registration number:</strong> <span th:text="${oferta.pojazd.numer_rejestracyjny}"></span></p>
-                            <p><strong>VIN:</strong> <span th:text="${oferta.pojazd.VIN}"></span></p>
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Car data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <p><strong>Registration number:</strong> <span th:text="${oferta.pojazd.numer_rejestracyjny}"></span></p>
+                        <p><strong>VIN:</strong> <span th:text="${oferta.pojazd.VIN}"></span></p>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
                 </div>
             </div>
+        </div>
+                <!-- ... existing code ... -->
+            </div>
+
         </div>
     </div>
 </div>
 
-<!--<script>
-    function toggleDetails(detailsId) {
-        var detailsElement = document.getElementById(detailsId);
-        if (detailsElement.style.display === 'none' || detailsElement.style.display === '') {
-            detailsElement.style.display = 'block';
-        } else {
-            detailsElement.style.display = 'none';
-        }
-    }
-</script>-->
+
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

@@ -90,5 +90,12 @@ public class Salon_samochodowyDAO {
         // Implementacja aktualizacji danych salonu (możesz dodać, gdy jest taka potrzeba)
     }
 
-
+    public void delete(int id) {
+        String deleteSalonSql = "DELETE FROM \"Salony_samochodowe\" WHERE \"id_salon_samochodowy\" = ?";
+        jdbcTemplate.update(deleteSalonSql, id);
+    }
+    public void delete2(int id) {
+        String sql = "DELETE FROM \"Modele\" WHERE  \"id_model\" = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }

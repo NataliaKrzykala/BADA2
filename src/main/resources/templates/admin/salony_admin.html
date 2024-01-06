@@ -140,12 +140,19 @@
             <p><strong>Address:</strong> <span
                     th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span>
             </p>
-            <button class="btn btn-danger" >Delete</button>
+            <button class="btn btn-danger" th:onclick="'javascript:deleteSalon(' + ${salon.id_salon_samochodowy} + ')'" >Delete</button>
         </div>
     </div>
 </div>
 
-
+<!-- Add a JavaScript function to confirm the deletion -->
+<script>
+    function deleteSalon(id) {
+        if (confirm("Are you sure you want to delete this salon?")) {
+            window.location.href = '/deleteSalon/' + id;
+        }
+    }
+</script>
 
 </body>
 

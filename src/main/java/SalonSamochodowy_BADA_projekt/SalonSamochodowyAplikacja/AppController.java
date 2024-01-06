@@ -313,5 +313,16 @@ public class AppController implements WebMvcConfigurer {
         pojazdDAO.save(pojazd);
         return "redirect:/pojazdy";  // Przekierowanie na strone z lista pojazdow admina
     }
+    @RequestMapping(value = "/deleteSalon/{id}")
+    public String deleteSalon(@PathVariable int id) {
+        dao.delete(id);
+        return "redirect:/salony_admin";
+    }
+    @RequestMapping(value = "/deleteModel/{id}")
+    public String deleteModel(@PathVariable int id) {
+        dao.delete2(id);
+        return "redirect:/modele_admin";
+    }
+
 
 }
