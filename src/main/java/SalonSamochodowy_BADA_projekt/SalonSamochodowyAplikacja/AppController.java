@@ -50,6 +50,8 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/ofertaKupno_add").setViewName("ofertaKupno_add");
         registry.addViewController("/pracownicy").setViewName("pracownicy");
         registry.addViewController("/pracownicy_add").setViewName("pracownicy_add");
+        registry.addViewController("/pojazdy").setViewName("pojazdy");
+        registry.addViewController("/pojazdy_add").setViewName("pojazdy_add");
     }
 
 
@@ -152,6 +154,23 @@ public class AppController implements WebMvcConfigurer {
         return "admin/ofertaKupno_admin";
     }
 
+    @RequestMapping(value ={"/ofertaKupno_add"})
+    public String viewOfertaKupnoAddPage(Model model){
+        Oferta oferta = new Oferta();
+        model.addAttribute("ofertaKupno", oferta);
+
+        List<Salon_samochodowy> salony = dao.list();
+        model.addAttribute("salony", salony);
+
+        return "admin/ofertaKupno_add";
+    }
+
+    @PostMapping("/saveOfertaKupno")
+    public String saveOfertaKupno(@ModelAttribute Oferta oferta) {
+        daoOfertaKupno.saveOfertaKupno(oferta);
+        return "redirect:/ofertaKupno_admin";  // Przekierowanie na strone z lista ofert kupna admina
+    }
+
     @Autowired
     private OfertaDAO daoOfertaWypozyczenie;
     @RequestMapping(value ={"/ofertaWypozyczenie"})
@@ -171,6 +190,23 @@ public class AppController implements WebMvcConfigurer {
         List<Oferta> listOfertaWypozyczenie = daoOfertaWypozyczenie.listOfertaWypozyczenie();
         model.addAttribute("listOfertaWypozyczenie", listOfertaWypozyczenie);
         return "admin/ofertaWypozyczenie_admin";
+    }
+
+    @RequestMapping(value ={"/ofertaWypozyczenie_add"})
+    public String viewOfertaWypozyczenieAddPage(Model model){
+        Oferta oferta = new Oferta();
+        model.addAttribute("ofertaWypozyczenie", oferta);
+
+        List<Salon_samochodowy> salony = dao.list();
+        model.addAttribute("salony", salony);
+
+        return "admin/ofertaWypozyczenie_add";
+    }
+
+    @PostMapping("/saveOfertaWypozyczenie")
+    public String saveOfertaWypozyczenie(@ModelAttribute Oferta oferta) {
+        daoOfertaWypozyczenie.saveOfertaWypozyczenie(oferta);
+        return "redirect:/ofertaWypozyczenie_admin";  // Przekierowanie na strone z lista ofert wypozyczenia admina
     }
 
     @Autowired
@@ -204,7 +240,7 @@ public class AppController implements WebMvcConfigurer {
     @PostMapping("/saveModel")
     public String saveModel(@ModelAttribute SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model model1) {
         daoModel.save(model1);
-        return "redirect:/modele_admin";  // Przekierowanie na stronę z listą modeli admina
+        return "redirect:/modele_admin";  // Przekierowanie na strone z lista modeli admina
     }
 
     @RequestMapping(value ={"/salony_add"})
@@ -217,7 +253,7 @@ public class AppController implements WebMvcConfigurer {
     @PostMapping("/save")
     public String saveSalon(@ModelAttribute Salon_samochodowy salon_samochodowy) {
         dao.save(salon_samochodowy);
-        return "redirect:/salony_admin";  // Przekierowanie na stronę z listą salonów
+        return "redirect:/salony_admin";  // Przekierowanie na strone z lista salonów
     }
 
     @Autowired
@@ -248,7 +284,34 @@ public class AppController implements WebMvcConfigurer {
     @PostMapping("/savePracownik")
     public String savePracownik(@ModelAttribute Pracownik pracownik) {
         daoPracownik.save(pracownik);
-        return "redirect:/pracownicy";  // Przekierowanie na stronę z listą pracowników
+        return "redirect:/pracownicy";  // Przekierowanie na strone z lista pracowników
+    }
+
+    @Autowired
+    private PojazdDAO pojazdDAO;
+
+    @RequestMapping(value ={"/pojazdy"})
+    public String viewPojazdyPage(Model model){
+        List<Pojazd> listPojazd = pojazdDAO.list();
+        model.addAttribute("listPojazd", listPojazd);
+        return "admin/pojazdy";
+    }
+
+    @RequestMapping(value ={"/pojazdy_add"})
+    public String viewPojazdAddPage(Model model){
+        Pojazd pojazd = new Pojazd();
+        model.addAttribute("pojazd", pojazd);
+
+        List<SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja.Model> modele = daoModel.list();
+        model.addAttribute("modele", modele);
+
+        return "admin/pojazdy_add";
+    }
+
+    @PostMapping("/savePojazd")
+    public String savePojazd(@ModelAttribute Pojazd pojazd) {
+        pojazdDAO.save(pojazd);
+        return "redirect:/pojazdy";  // Przekierowanie na strone z lista pojazdow admina
     }
 
 }

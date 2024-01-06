@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,7 +127,50 @@ public class OfertaDAO {
     }
 
     /* Insert – wstawianie nowego wiersza do bazy */
-    public void save(Oferta oferta) {
+    public void saveOfertaWypozyczenie(Oferta oferta) {
+
+        SimpleJdbcInsert insertSalon = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("\"Oferty\"")
+                .usingColumns("\"data_utworzenia\"", "\"typ_nabycia\"", "\"cena\"", "\"id_salon_samochodowy\"", "\"id_pojazd\"");
+
+        // Set typ_nabycia to 'wypozyczenie'
+        String typNabycia = "wypozyczenie";
+        // Get today's date
+        LocalDate today = LocalDate.now();
+
+        // Create parameters map for OfertaWYpozyczenie
+        Map<String, Object> ofertaWypozyczenieParameters = new HashMap<>();
+        ofertaWypozyczenieParameters.put("\"data_utworzenia\"", today);
+        ofertaWypozyczenieParameters.put("\"typ_nabycia\"", typNabycia);
+        ofertaWypozyczenieParameters.put("\"cena\"", oferta.getCena());
+        ofertaWypozyczenieParameters.put("\"id_salon_samochodowy\"", oferta.getId_salon_samochodowy());
+        ofertaWypozyczenieParameters.put("\"id_pojazd\"", oferta.getId_pojazd());
+
+        insertSalon.execute(ofertaWypozyczenieParameters);
+
+    }
+
+    public void saveOfertaKupno(Oferta oferta) {
+
+        SimpleJdbcInsert insertSalon = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("\"Oferty\"")
+                .usingColumns("\"data_utworzenia\"", "\"typ_nabycia\"", "\"cena\"", "\"id_salon_samochodowy\"", "\"id_pojazd\"");
+
+        // Set typ_nabycia to 'kupno'
+        String typNabycia = "kupno";
+        // Get today's date
+        LocalDate today = LocalDate.now();
+
+        // Create parameters map for OfertaKupno
+        Map<String, Object> ofertaWypozyczenieParameters = new HashMap<>();
+        ofertaWypozyczenieParameters.put("\"data_utworzenia\"", today);
+        ofertaWypozyczenieParameters.put("\"typ_nabycia\"", typNabycia);
+        ofertaWypozyczenieParameters.put("\"cena\"", oferta.getCena());
+        ofertaWypozyczenieParameters.put("\"id_salon_samochodowy\"", oferta.getId_salon_samochodowy());
+        ofertaWypozyczenieParameters.put("\"id_pojazd\"", oferta.getId_pojazd());
+
+        insertSalon.execute(ofertaWypozyczenieParameters);
+
     }
 
     /* Read – odczytywanie danych z bazy */

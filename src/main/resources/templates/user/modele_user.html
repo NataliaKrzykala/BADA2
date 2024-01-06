@@ -2,9 +2,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+    <!-- Bootstrap-datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <meta charset="UTF-8" />
+    <title>VeloVista Car Models - User Dashboard</title>
+
+    <style>
+        /* Custom Styles for Offer Cards */
+        .card {
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border-bottom: 1px solid #495057;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin-bottom: 10px;
+        }
+
+        /* Add some spacing and styling to the 'Add a new shop' button */
+        .btn-primary {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 
 </head>
 <body>
@@ -65,38 +120,17 @@
     </div>
 </nav>
 
-<!-- Car shops -->
-<div align="center">
-    <h1>VeloVista car models</h1>
+<div class="container">
 
-    <table border="1" cellpadding="10">
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Number of doors</th>
-            <th>Engine power (HP)</th>
-            <th>Fuel usage (l/100km)</th>
-            <th>Trunk capacity (l)</th>
-
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="model : ${listModel}">
-            <td th:text="${model.id_model}">ID</td>
-            <td th:text="${model.nazwa_modelu}">Name</td>
-            <td th:text="${model.liczba_drzwi}">Number of doors</td>
-            <td th:text="${model.moc_silnika}">Engine power (HP)</td>
-            <td th:text="${model.spalanie_paliwa}">Fuel usage (l/100km)</td>
-            <td th:text="${model.pojemnosc_bagaznika}">Trunk capacity (l)</td>
-        </tr>
-        </tbody>
-
-    </table>
-
+    <div th:each="model, iterStat : ${listModel}" class="card">
+        <div class="card-header" th:text="${model.nazwa_modelu}"></div>
+        <div class="card-body">
+            <p><strong>Number of doors:</strong> <span th:text="${model.liczba_drzwi}"></span></p>
+            <p><strong>Engine power (HP):</strong> <span th:text="${model.moc_silnika}"></span></p>
+            <p><strong>Fuel usage (l/100km):</strong> <span th:text="${model.spalanie_paliwa}"></span></p>
+            <p><strong>Trunk capacity (l):</strong> <span th:text="${model.pojemnosc_bagaznika}"></span></p>
+        </div>
+    </div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

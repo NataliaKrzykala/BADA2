@@ -95,6 +95,7 @@
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/pojazdy}">Cars</a></a>
                         <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
@@ -137,12 +138,12 @@
             <p><strong>Car shop:</strong> <span th:text="${pracownik.salon_samochodowy.nazwa}"></span></p>
 
             <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
                 See personal data
             </button>
 
             <!-- The Modal -->
-            <div class="modal" id="myModal">
+            <div class="modal" th:id="'myModal1-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
 

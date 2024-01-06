@@ -2,17 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
 
     <!-- Bootstrap-datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
     <meta charset="UTF-8" />
-    <title>VeloVista Purchase Offers - Admin Dashboard</title>
+    <title>VeloVista Cars - Admin Dashboard</title>
 
     <style>
-        /* Custom Styles for Offer Cards */
+        /* Custom Styles for Car Cards */
         .card {
             margin: 20px 0;
             border: 1px solid #e0e0e0;
@@ -43,7 +42,6 @@
             margin-bottom: 10px;
         }
 
-        /* Add some spacing and styling to the 'Add a new shop' button */
         .btn-primary {
             display: inline-block;
             margin: 20px auto; /* Center the button horizontally */
@@ -61,8 +59,8 @@
             background-color: #0056b3;
         }
     </style>
-</head>
 
+</head>
 <body>
 
 <!-- Navigation -->
@@ -78,7 +76,7 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">Home</a></a>
+                    <a class="nav-link" th:href="@{/index_admin}">Home</a></a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -86,8 +84,8 @@
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/salony}">Shops</a></a>
-                        <a class="dropdown-item" th:href="@{/kontakt}">Contact</a></a>
+                        <a class="dropdown-item" th:href="@{/salony_admin}">Shops</a></a>
+                        <a class="dropdown-item" th:href="@{/kontakt_admin}">Contact</a></a>
                     </div>
                 </li>
 
@@ -96,19 +94,29 @@
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/modele}">Car Models</a></a>
-                        <a class="dropdown-item active" href="#">Purchase</a>
+                        <a class="dropdown-item active" href="#">Cars</a>
                         <span class="sr-only">(current)</span>
                         </a>
-                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie}">Rental</a></a>
+                        <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pracownicy}">Staff</a></a>
                 </li>
 
             </ul>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a></a>
+                    <a class="nav-link" th:href="@{/main_admin}">Account</a></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
+                            style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
                 </li>
             </ul>
 
@@ -116,69 +124,22 @@
     </div>
 </nav>
 
-<!-- Car shops
-<div align="center">
-    <h1>Purchase offers</h1>
-
-    <table border="1" cellpadding="10">
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>When created</th>
-            <th>Price</th>
-            <th>Which shop</th>
-            <th>Which car model</th>
-            <th>Number of doors</th>
-            <th>Engine power (HP)</th>
-            <th>Fuel usage (l/100km)</th>
-            <th>Trunk capacity (l)</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="oferta : ${listOfertaKupno}">
-            <td th:text="${oferta.id_oferta}">ID</td>
-            <td th:text="${oferta.data_utworzenia}">When created</td>
-            <td th:text="${oferta.cena}">Price</td>
-            <td th:text="${oferta.salon.nazwa}">Which shop</td>
-            <td th:text="${oferta.model.nazwa_modelu}">Which car model</td>
-
-            This section should be available on "see more details"
-
-            <td th:text="${oferta.model.liczba_drzwi}">Number of doors</td>
-            <td th:text="${oferta.model.moc_silnika}">Engine power (HP)</td>
-            <td th:text="${oferta.model.spalanie_paliwa}">Fuel usage (l/100km)</td>
-            <td th:text="${oferta.model.pojemnosc_bagaznika}">Trunk capacity (l)</td>
-
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>-->
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
-
-            <div style="font-size:20px">Log in <a th:href="@{/login}"><b>here</b></a> or in the
-                upper right corner to see more details about available purchase offers.
-            </div>
-
-        </div>
-    </div>
+<div class="container mt-5 text-center">
+    <a th:href="@{/pojazdy_add}" class="btn btn-primary">Add a new car</a>
 </div>
 
 <div class="container">
 
-    <div th:each="oferta, iterStat : ${listOfertaKupno}" class="card">
-        <div class="card-header" th:text="${oferta.model.nazwa_modelu}"></div>
+    <div th:each="pojazd, iterStat : ${listPojazd}" class="card">
+        <div class="card-header" th:text="${pojazd.VIN}"></div>
         <div class="card-body">
-            <p><strong>Price:</strong> <span th:text="${oferta.cena}"></span></p>
-            <p><strong>When created:</strong> <span th:text="${oferta.data_utworzenia}"></span></p>
-            <p><strong>Which shop:</strong> <span th:text="${oferta.salon.nazwa}"></span></p>
+            <p><strong>Registration number:</strong> <span th:text="${pojazd.numer_rejestracyjny}"></span></p>
+            <p><strong>State of car:</strong> <span th:text="${pojazd.stan}"></span></p>
+            <p><strong>Date of last technical inspection:</strong> <span th:text="${pojazd.data_przegladu}"></span></p>
+            <p><strong>Mileage:</strong> <span th:text="${pojazd.przebieg}"></span></p>
+            <p><strong>Type of fuel:</strong> <span th:text="${pojazd.typ_paliwa}"></span></p>
+            <p><strong>Colour:</strong> <span th:text="${pojazd.kolor}"></span></p>
+            <strong>Model:</strong> <span th:text="${pojazd.model.nazwa_modelu}"></span></p>
 
             <!-- Button to open the modal for model data -->
             <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
@@ -192,16 +153,16 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title" th:text="${oferta.model.nazwa_modelu}"></h4>
+                            <h4 class="modal-title" th:text="${pojazd.model.nazwa_modelu}"></h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <p><strong>Number of doors:</strong> <span th:text="${oferta.model.liczba_drzwi}"></span></p>
-                            <p><strong>Engine power (HP):</strong> <span th:text="${oferta.model.moc_silnika}"></span></p>
-                            <p><strong>Fuel usage (l/100km):</strong> <span th:text="${oferta.model.spalanie_paliwa}"></span></p>
-                            <p><strong>Trunk capacity (l):</strong> <span th:text="${oferta.model.pojemnosc_bagaznika}"></span></p>
+                            <p><strong>Number of doors:</strong> <span th:text="${pojazd.model.liczba_drzwi}"></span></p>
+                            <p><strong>Engine power (HP):</strong> <span th:text="${pojazd.model.moc_silnika}"></span></p>
+                            <p><strong>Fuel usage (l/100km):</strong> <span th:text="${pojazd.model.spalanie_paliwa}"></span></p>
+                            <p><strong>Trunk capacity (l):</strong> <span th:text="${pojazd.model.pojemnosc_bagaznika}"></span></p>
                         </div>
 
                         <!-- Modal footer -->
@@ -220,5 +181,7 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
+
 </body>
 </html>
+

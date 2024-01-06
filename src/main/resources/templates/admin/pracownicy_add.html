@@ -103,6 +103,7 @@
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/pojazdy}">Cars</a></a>
                         <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
@@ -147,7 +148,7 @@
         </div>
 
         <div class="form-group">
-            <label for="imie">Surname</label>
+            <label for="nazwisko">Surname</label>
             <input type="text" class="form-control" id="nazwisko" th:field="*{nazwisko}" th:required="true">
         </div>
 

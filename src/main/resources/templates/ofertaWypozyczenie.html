@@ -8,7 +8,7 @@
     <!-- Bootstrap-datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
     <meta charset="UTF-8" />
-    <title>VeloVista Rental Offers - Admin Dashboard</title>
+    <title>VeloVista Rental Offers</title>
 
     <style>
         /* Custom Styles for Offer Cards */
@@ -180,12 +180,12 @@
             <p><strong>Which shop:</strong> <span th:text="${oferta.salon.nazwa}"></span></p>
 
             <!-- Button to open the modal for model data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
                 See car model details
             </button></p>
 
             <!-- The Modal for model data -->
-            <div class="modal" id="myModal1">
+            <div class="modal" th:id="'myModal1-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
 

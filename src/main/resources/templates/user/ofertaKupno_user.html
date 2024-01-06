@@ -188,12 +188,12 @@
             <p><strong>Which shop:</strong> <span th:text="${oferta.salon.nazwa}"></span></p>
 
             <!-- Button to open the modal for model data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
                 See car model details
             </button></p>
 
             <!-- The Modal for model data -->
-            <div class="modal" id="myModal1">
+            <div class="modal" th:id="'myModal1-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -221,12 +221,12 @@
             </div>
 
             <!-- Button to open the modal for car data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal2-' + ${iterStat.index}">
                 See car details
             </button></p>
 
             <!-- The Modal for car data -->
-            <div class="modal" id="myModal2">
+            <div class="modal" th:id="'myModal2-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
 

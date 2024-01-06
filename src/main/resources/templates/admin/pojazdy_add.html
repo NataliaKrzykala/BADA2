@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
 
     <!-- Bootstrap-datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
     <meta charset="UTF-8" />
-    <title>VeloVista Add Purchase Offer - Admin Dashboard</title>
+    <title>VeloVista Add Car - Admin Dashboard</title>
 
     <style>
         body {
@@ -68,8 +68,8 @@
             color: #ffffff;
         }
     </style>
-</head>
 
+</head>
 <body>
 
 <!-- Navigation -->
@@ -103,11 +103,11 @@
                         Offer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/pojazdy}">Cars</a></a>
-                        <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
-                        <a class="dropdown-item active" href="#">Purchase</a>
+                        <a class="dropdown-item active" href="#">Cars</a>
                         <span class="sr-only">(current)</span>
                         </a>
+                        <a class="dropdown-item" th:href="@{/modele_admin}">Car Models</a></a>
+                        <a class="dropdown-item" th:href="@{/ofertaKupno_admin}">Purchase</a></a>
                         <a class="dropdown-item" th:href="@{/ofertaWypozyczenie_admin}">Rental</a></a>
                     </div>
                 </li>
@@ -133,40 +133,69 @@
     </div>
 </nav>
 
+
 <div class="container mt-5">
-    <h1 class="text-center">VeloVista Add Purchase Offer</h1>
+    <h1 class="text-center">VeloVista Add Car</h1>
 
-    <form action="/saveOfertaKupno" th:action="@{/saveOfertaKupno}" th:object="${ofertaKupno}" method="post" class="col-md-6 mx-auto">
-
+    <form action="/saveModel" th:action="@{/savePojazd}" th:object="${pojazd}" method="post">
 
         <div class="form-group">
-            <label for="cena">Price</label>
-            <input type="text" class="form-control" id="cena" th:field="*{cena}" th:required="true">
+            <label for="VIN">VIN</label>
+            <input type="text" class="form-control" id="VIN" th:field="*{VIN}" th:required="true">
         </div>
 
         <div class="form-group">
-            <label for="salon">Car shop </label>
-            <select class="form-control" id="salon" name="id_salon_samochodowy" required>
-                <option value="">Select car shop</option>
+            <label for="numer_rejestracyjny">Registration number</label>
+            <input type="text" class="form-control" id="numer_rejestracyjny" th:field="*{numer_rejestracyjny}" th:required="false">
+        </div>
+
+        <div class="form-group">
+            <label for="stan">State</label>
+            <input type="text" class="form-control" id="stan" th:field="*{stan}" th:required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="data_przegladu">Date of last inspection</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="data_przegladu" th:field="*{data_przegladu}" autocomplete="off" th:required="false">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="przebieg">Mileage</label>
+            <input type="text" class="form-control" id="przebieg" th:field="*{przebieg}" th:required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="typ_paliwa">Type of fuel</label>
+            <input type="text" class="form-control" id="typ_paliwa" th:field="*{typ_paliwa}" th:required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="kolor">Colour</label>
+            <input type="text" class="form-control" id="kolor" th:field="*{kolor}" th:required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="salon">Car model</label>
+            <select class="form-control" id="salon" name="id_model" required>
+                <option value="">Select car model</option>
                 <!-- Iterate over the list of available positions -->
-                <option th:each="salon : ${salony}" th:value="${salon.id_salon_samochodowy}" th:text="${salon.nazwa}"></option>
+                <option th:each="model : ${modele}" th:value="${model.id_model}" th:text="${model.nazwa_modelu}"></option>
             </select>
-            <!--<input type="text" class="form-control" id="id_salon_samochodowy" th:field="*{id_salon_samochodowy}">-->
-        </div>
-
-        <div class="form-group">
-            <label for="id_pojazd">Car</label>
-            <input type="text" class="form-control" id="id_pojazd" th:field="*{id_pojazd}" th:required="true">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
 
-
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -179,3 +208,4 @@
 
 </body>
 </html>
+

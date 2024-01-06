@@ -35,7 +35,7 @@ public class OfertaDAOTest {
     @Test
     void listWypozyczenie() {
         List<Oferta> listOferta = dao.listOfertaWypozyczenie();
-        assertTrue(listOferta.isEmpty());
+        assertFalse(listOferta.isEmpty());
         for (Oferta oferta : listOferta) {
             System.out.println(oferta.toString());
         }

@@ -10,12 +10,12 @@ public class Pojazd {
     private String VIN;
     private String numer_rejestracyjny;
     private String stan;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_przegladu;
     private int przebieg;
     private String typ_paliwa;
     private String kolor;
     private int id_model;
+    private Model model;
 
     public Pojazd(int id_pojazd, String VIN, String numer_rejestracyjny, String stan, LocalDate data_przegladu, int przebieg, String typ_paliwa, String kolor, int id_model) {
         this.id_pojazd = id_pojazd;
@@ -27,6 +27,14 @@ public class Pojazd {
         this.typ_paliwa = typ_paliwa;
         this.kolor = kolor;
         this.id_model = id_model;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public int getId_pojazd() {
@@ -60,7 +68,7 @@ public class Pojazd {
     public void setStan(String stan) {
         this.stan = stan;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getData_przegladu() {
         return data_przegladu;
     }
