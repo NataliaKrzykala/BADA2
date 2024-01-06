@@ -12,7 +12,15 @@
     <title>VeloVista Rental Offers - User Dashboard</title>
 
     <style>
-        /* Custom Styles for Offer Cards */
+        .btn-delete {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #f10000;
+        }
         .card {
             margin: 20px 0;
             border: 1px solid #e0e0e0;
@@ -178,6 +186,7 @@
 
 </div>-->
 
+
 <div class="container">
 
     <div th:each="oferta, iterStat : ${listOfertaKupno}" class="card">
@@ -187,45 +196,20 @@
             <p><strong>When created:</strong> <span th:text="${oferta.data_utworzenia}"></span></p>
             <p><strong>Which shop:</strong> <span th:text="${oferta.salon.nazwa}"></span></p>
 
-            <!-- Button to open the modal for model data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
-                See car model details
-            </button></p>
+            <!-- Button group for model and car details with spacing -->
+            <div class="btn-group" role="group">
+                <!-- Button to open the modal for model data -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal1-' + ${iterStat.index}">
+                    See car model details
+                </button>
 
-            <!-- The Modal for model data -->
-            <div class="modal" th:id="'myModal1-' + ${iterStat.index}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title" th:text="${oferta.model.nazwa_modelu}"></h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <p><strong>Number of doors:</strong> <span th:text="${oferta.model.liczba_drzwi}"></span></p>
-                            <p><strong>Engine power (HP):</strong> <span th:text="${oferta.model.moc_silnika}"></span></p>
-                            <p><strong>Fuel usage (l/100km):</strong> <span th:text="${oferta.model.spalanie_paliwa}"></span></p>
-                            <p><strong>Trunk capacity (l):</strong> <span th:text="${oferta.model.pojemnosc_bagaznika}"></span></p>
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
+                <!-- Add a margin to the right of the first button for spacing -->
+                <button type="button" class="btn btn-primary ml-2" data-toggle="modal" th:data-target="'#myModal2-' + ${iterStat.index}">
+                    See car details
+                </button>
             </div>
 
-            <!-- Button to open the modal for car data -->
-            <p><button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal2-' + ${iterStat.index}">
-                See car details
-            </button></p>
-
-            <!-- The Modal for car data -->
+            <!-- The Modal for model data remains unchanged -->
             <div class="modal" th:id="'myModal2-' + ${iterStat.index}">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -253,10 +237,36 @@
                     </div>
                 </div>
             </div>
+            <div class="modal" th:id="'myModal1-' + ${iterStat.index}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" th:text="${oferta.model.nazwa_modelu}"></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p><strong>Number of doors:</strong> <span th:text="${oferta.model.liczba_drzwi}"></span></p>
+                            <p><strong>Engine power (HP):</strong> <span th:text="${oferta.model.moc_silnika}"></span></p>
+                            <p><strong>Fuel usage (l/100km):</strong> <span th:text="${oferta.model.spalanie_paliwa}"></span></p>
+                            <p><strong>Trunk capacity (l):</strong> <span th:text="${oferta.model.pojemnosc_bagaznika}"></span></p>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
-
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
