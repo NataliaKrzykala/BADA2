@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Main User Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
@@ -88,6 +89,34 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
+        .container {
+            margin-top: 20px;
+        }
+
+        /* ... (Pozostaw resztę stylów bez zmian) ... */
+
+        .row {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .col-md-10 {
+            flex: 1;
+        }
+
+        /* Nowy styl dla kontenera po prawej stronie na zdjęcie */
+        .image-container {
+            flex-basis: 30%; /* Określa szerokość kontenera na prawo */
+            padding: 20px;
+        }
+
+        .image-placeholder {
+            width: 100%; /* Aby zdjęcie zajmowało 100% szerokości kontenera */
+
+
+            padding: 10px;
+
+        }
     </style>
 
 </head>
@@ -164,61 +193,67 @@
                     <div style="font-size:20px">If you want to logout, click "Logout" button under this text.</div>
                 </div>
 
-                <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+                <button class="btn btn-danger" type="submit" onclick="successfullyLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </form>
+        </div>
+        <!-- Nowy kontener na prawej stronie dla zdjęcia -->
+        <div class="image-container">
+            <div class="image-placeholder">
+<img src="/images/avatar.png" style="width: 70%">
+            </div>
         </div>
 
     </div>
 </div>
 
-<div class="container">
 
+<div class="container mt-5">
     <div class="card">
-        <div class="card-header" th:text="${klient.nazwisko + ' ' + klient.imie}"></div>
         <div class="card-body">
             <p><strong>Phone number:</strong> <span th:text="${klient.nr_telefonu}"></span></p>
             <p><strong>Email address:</strong> <span th:text="${klient.email}"></span></p>
-            <p><strong>Address:</strong> <span
-                    th:text="${klient.adres.miejscowosc + ', ' + klient.adres.ulica + ' ' + klient.adres.nr_lokalu + ', ' + klient.adres.kod_poczty + ' ' + klient.adres.poczta}"></span>
-            </p>
+            <p><strong>Address:</strong> <span th:text="${klient.adres.miejscowosc + ', ' + klient.adres.ulica + ' ' + klient.adres.nr_lokalu + ', ' + klient.adres.kod_poczty + ' ' + klient.adres.poczta}"></span></p>
 
             <!-- Button to Open the Modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModalKlient-'">
-                Edit personal data
+                <i class="fas fa-edit"></i> Edit personal data
             </button>
+        </div>
+    </div>
+</div>
 
-            <!-- The Klient Modal -->
-            <div class="modal" th:id="'myModalKlient-'">
-                <!-- Modal content for updating Klient -->
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title" th:text="'Edit your personal data, ' + ${klient.imie + ' ' + klient.nazwisko}"></h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal Body -->
-                        <div class="modal-body">
-                            <!-- Update Form for Klient -->
-                            <form th:action="@{'/updateKlient/' + ${klient.id_klient}}" method="post">
-                                <p><strong>Name:</strong> <span th:text="${klient.imie}"></span></p>
-                                <p><strong>Surname:</strong> <span th:text="${klient.nazwisko}"></span></p>
-                                <!-- Add input fields for updating data -->
-                                <label for="updateNr_telefonu">Update phone number:</label>
-                                <input type="text" id="updateNr_telefonu" name="updateNr_telefonu" th:value="${klient.nr_telefonu}" />
-                                <label for="updateEmail">Update email:</label>
-                                <input type="text" id="updateEmail" name="updateEmail" th:value="${klient.email}" />
-                                <!-- Submit button -->
-                                <p><button type="submit" class="btn btn-primary">Update</button></p>
-                            </form>
-                        </div>
-                        <!-- Modal Footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
+<!-- Edit Modal -->
+<div class="modal fade" th:id="'myModalKlient-'" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" th:text="'Edit your personal data, ' + ${klient.imie + ' ' + klient.nazwisko}"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Update Form for Klient -->
+                <form th:action="@{'/updateKlient/' + ${klient.id_klient}}" method="post">
+                    <p><strong>Name:</strong> <span th:text="${klient.imie}"></span></p>
+                    <p><strong>Surname:</strong> <span th:text="${klient.nazwisko}"></span></p>
+                    <!-- Add input fields for updating data -->
+                    <div class="form-group">
+                        <label for="updateNr_telefonu">Update phone number:</label>
+                        <input type="text" id="updateNr_telefonu" name="updateNr_telefonu" th:value="${klient.nr_telefonu}" class="form-control" />
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="updateEmail">Update email:</label>
+                        <input type="text" id="updateEmail" name="updateEmail" th:value="${klient.email}" class="form-control" />
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
