@@ -98,6 +98,42 @@ public class AppController implements WebMvcConfigurer {
         return "user/main_user";
     }
 
+    @Autowired
+    private KlientDAO daoKlient;
+
+    // Add a new mapping to display details of a single Klient in main_user.html
+    @GetMapping("/main_user") //"/updateKlient"
+    public String showUpdateKlientForm(Model model) {
+        int id = 2;
+        Klient klient = daoKlient.get(id);
+
+        if (klient != null) {
+            model.addAttribute("klient", klient);
+            return "user/main_user";
+        } else {
+            // Handle the case where the Klient with the given ID is not found
+            return "redirect:/login";
+        }
+    }
+
+    @PostMapping("/updateKlient/{id}")
+    public String updateKlient(@PathVariable int id, @RequestParam String updateNr_telefonu, @RequestParam String updateEmail) {
+        // Retrieve the Klient from the DAO
+        Klient klient = daoKlient.get(id);
+
+        if (klient != null) {
+            klient.setNr_telefonu(updateNr_telefonu);
+            klient.setEmail(updateEmail);
+
+            daoKlient.update(klient);
+
+            return "redirect:/main_user";
+        } else {
+            // Handle the case where the Klient with the given ID is not found
+            return "redirect:/login";
+        }
+    }
+
     @RequestMapping(value = "/index_user")
     public String showIndexUserPage() {
         return "user/index_user";

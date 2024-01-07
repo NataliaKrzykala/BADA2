@@ -18,6 +18,16 @@ public class Klient {
         this.id_adres = id_adres;
     }
 
+    private Adres adres;
+    public Adres getAdres() {
+        return adres;
+    }
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
+
+
     public int getId_klient() {
         return id_klient;
     }

@@ -6,6 +6,90 @@
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
+    <!-- Bootstrap-datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <meta charset="UTF-8" />
+    <title>VeloVista Staff - Admin Dashboard</title>
+
+    <style>
+        .btn-delete {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #f10000;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            color: #495057;
+        }
+
+        .card {
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border-bottom: 1px solid #495057;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin-bottom: 10px;
+        }
+
+        /* Add some spacing and styling to the 'Add a new shop' button */
+        .btn-primary {
+            display: inline-block;
+            margin: 20px auto; /* Center the button horizontally */
+            padding: 10px 20px;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -85,6 +169,58 @@
             </form>
         </div>
 
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-header" th:text="${klient.nazwisko + ' ' + klient.imie}"></div>
+        <div class="card-body">
+            <p><strong>Phone number:</strong> <span th:text="${klient.nr_telefonu}"></span></p>
+            <p><strong>Email address:</strong> <span th:text="${klient.email}"></span></p>
+            <p><strong>Address:</strong> <span
+                    th:text="${klient.adres.miejscowosc + ', ' + klient.adres.ulica + ' ' + klient.adres.nr_lokalu + ', ' + klient.adres.kod_poczty + ' ' + klient.adres.poczta}"></span>
+            </p>
+
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModalKlient-'">
+                Edit personal data
+            </button>
+
+            <!-- The Klient Modal -->
+            <div class="modal" th:id="'myModalKlient-'">
+                <!-- Modal content for updating Klient -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" th:text="'Edit your personal data, ' + ${klient.imie + ' ' + klient.nazwisko}"></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            <!-- Update Form for Klient -->
+                            <form th:action="@{'/updateKlient/' + ${klient.id_klient}}" method="post">
+                                <p><strong>Name:</strong> <span th:text="${klient.imie}"></span></p>
+                                <p><strong>Surname:</strong> <span th:text="${klient.nazwisko}"></span></p>
+                                <!-- Add input fields for updating data -->
+                                <label for="updateNr_telefonu">Update phone number:</label>
+                                <input type="text" id="updateNr_telefonu" name="updateNr_telefonu" th:value="${klient.nr_telefonu}" />
+                                <label for="updateEmail">Update email:</label>
+                                <input type="text" id="updateEmail" name="updateEmail" th:value="${klient.email}" />
+                                <!-- Submit button -->
+                                <p><button type="submit" class="btn btn-primary">Update</button></p>
+                            </form>
+                        </div>
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

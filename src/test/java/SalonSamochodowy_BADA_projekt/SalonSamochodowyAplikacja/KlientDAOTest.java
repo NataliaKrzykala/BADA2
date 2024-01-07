@@ -40,7 +40,10 @@ public class KlientDAOTest {
 
     @Test
     void get() {
-        fail("Not yet implemented");
+        int id_klient = 2;
+        Klient klient = dao.get(id_klient);
+        assertNotNull(klient);
+        System.out.println(klient.toString());
     }
 
     @Test

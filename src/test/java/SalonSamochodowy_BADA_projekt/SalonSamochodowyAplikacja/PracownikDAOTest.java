@@ -27,7 +27,7 @@ public class PracownikDAOTest {
     @Test
     void list() {
         List<Pracownik> listPracownik = dao.list();
-        assertTrue(listPracownik.isEmpty());
+        assertFalse(listPracownik.isEmpty());
         for (Pracownik pracownik : listPracownik) {
             System.out.println(pracownik.toString());
         }
