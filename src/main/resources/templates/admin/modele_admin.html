@@ -132,6 +132,10 @@
 
 <div class="container">
 
+    <div th:if="${param.deletionError}" class="alert alert-danger">
+        <strong>Error: Cannot delete the model because there are associated vehicles.</strong>
+    </div>
+
     <div th:each="model, iterStat : ${listModel}" class="card">
         <div class="card-header" th:text="${model.nazwa_modelu}"></div>
         <div class="card-body">

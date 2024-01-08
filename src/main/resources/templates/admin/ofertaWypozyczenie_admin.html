@@ -163,9 +163,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModal3-' + ${iterStat.index}">
                     See car data
                 </button>
-                <button type="button" class="btn btn-danger btn-delete">
-                    Delete purchase
-                </button>
+                <button class="btn btn-danger" th:onclick="'deleteOfertaWypozyczenie(' + ${oferta.id_oferta} + ')'" >Delete</button>
             </div>
 
             <!-- Modal 1 -->
@@ -259,6 +257,13 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script>
+    function deleteOfertaWypozyczenie(id) {
+        if (confirm("Are you sure you want to delete this offer?")) {
+            window.location.href = '/deleteOfertaWypozyczenie/' + id;
+        }
+    }
+</script>
 
 </body>
 </html>

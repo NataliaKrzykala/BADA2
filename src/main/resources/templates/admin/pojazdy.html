@@ -130,6 +130,10 @@
 
 <div class="container">
 
+    <div th:if="${param.deletionError}" class="alert alert-danger">
+        <strong>Error: Cannot delete the car because there are associated offers.</strong>
+    </div>
+
     <div th:each="pojazd, iterStat : ${listPojazd}" class="card">
         <div class="card-header" th:text="${pojazd.VIN}"></div>
         <div class="card-body">
@@ -173,6 +177,9 @@
                     </div>
                 </div>
             </div>
+
+            <button class="btn btn-danger" th:onclick="'deletePojazd(' + ${pojazd.id_pojazd} + ')'" >Delete</button>
+
         </div>
     </div>
 </div>
@@ -180,6 +187,13 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script>
+    function deletePojazd(id) {
+        if (confirm("Are you sure you want to delete this car?")) {
+            window.location.href = '/deletePojazd/' + id;
+        }
+    }
+</script>
 
 
 </body>

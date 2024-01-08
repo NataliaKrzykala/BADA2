@@ -88,7 +88,22 @@ public class PojazdDAO {
     }
 
     /* Delete – wybrany rekord z danym id */
-    public void delete(int id) {
+    public boolean delete(int id) {
+        // Check if there are any offers associated with the specified car
+        String checkOfferSql = "SELECT COUNT(*) FROM \"Oferty\" WHERE \"id_pojazd\" = ?";
+        int offerCount = jdbcTemplate.queryForObject(checkOfferSql, Integer.class, id);
+
+        if (offerCount > 0) {
+            // Display a message indicating that the car cannot be deleted
+            System.out.println("Cannot delete the car because there are associated offers.");
+            return false;
+        } else {
+            // If no associated offers, proceed with car deletion
+            String deleteCarSql = "DELETE FROM \"Pojazdy\" WHERE  \"id_pojazd\" = ?";
+            jdbcTemplate.update(deleteCarSql, id);
+            System.out.println("Car deleted successfully.");
+            return true;
+        }
     }
 
 }

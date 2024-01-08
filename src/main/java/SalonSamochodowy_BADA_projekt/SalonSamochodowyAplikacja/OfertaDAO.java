@@ -184,5 +184,7 @@ public class OfertaDAO {
 
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        String sql = "DELETE FROM \"Oferty\" WHERE  \"id_oferta\" = ?";
+        jdbcTemplate.update(sql, id);
     }
 }

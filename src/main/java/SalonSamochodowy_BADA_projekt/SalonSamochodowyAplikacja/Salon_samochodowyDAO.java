@@ -94,26 +94,6 @@ public class Salon_samochodowyDAO {
         String deleteSalonSql = "DELETE FROM \"Salony_samochodowe\" WHERE \"id_salon_samochodowy\" = ?";
         jdbcTemplate.update(deleteSalonSql, id);
     }
-    public void delete2(int id) {
-        // Check if there are any vehicles associated with the specified model
-        String checkVehiclesSql = "SELECT COUNT(*) FROM \"Pojazdy\" WHERE \"id_model\" = ?";
-        int vehicleCount = jdbcTemplate.queryForObject(checkVehiclesSql, Integer.class, id);
-
-        if (vehicleCount > 0) {
-            // Display a message indicating that the model cannot be deleted
-            System.out.println("Cannot delete the model because there are associated vehicles.");
-        } else {
-            // If no associated vehicles, proceed with model deletion
-            String deleteModelSql = "DELETE FROM \"Modele\" WHERE  \"id_model\" = ?";
-            jdbcTemplate.update(deleteModelSql, id);
-            System.out.println("Model deleted successfully.");
-        }
-    }
-
-    public void delete3(int id) {
-        String sql = "DELETE FROM \"Pracownicy\" WHERE  \"id_pracownik\" = ?";
-        jdbcTemplate.update(sql, id);
-    }
 
     public List<Salon_samochodowy> searchSalony(String query) {
         String sql = "SELECT ss.*, a.*, p.* " +

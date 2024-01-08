@@ -51,6 +51,22 @@ public class ModelDAO {
     public void update(Model model) {
     }
 
+    public boolean delete(int id) {
+        // Check if there are any vehicles associated with the specified model
+        String checkVehiclesSql = "SELECT COUNT(*) FROM \"Pojazdy\" WHERE \"id_model\" = ?";
+        int vehicleCount = jdbcTemplate.queryForObject(checkVehiclesSql, Integer.class, id);
 
+        if (vehicleCount > 0) {
+            // Display a message indicating that the model cannot be deleted
+            System.out.println("Cannot delete the model because there are associated vehicles.");
+            return false;
+        } else {
+            // If no associated vehicles, proceed with model deletion
+            String deleteModelSql = "DELETE FROM \"Modele\" WHERE  \"id_model\" = ?";
+            jdbcTemplate.update(deleteModelSql, id);
+            System.out.println("Model deleted successfully.");
+            return true;
+        }
+    }
 
 }

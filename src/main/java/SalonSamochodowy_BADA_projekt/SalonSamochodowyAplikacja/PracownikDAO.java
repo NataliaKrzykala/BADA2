@@ -125,6 +125,8 @@ public class PracownikDAO {
 
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        String sql = "DELETE FROM \"Pracownicy\" WHERE  \"id_pracownik\" = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 }

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -357,15 +360,40 @@ public class AppController implements WebMvcConfigurer {
         return "redirect:/salony_admin";
     }
     @RequestMapping(value = "/deleteModel/{id}")
-    public String deleteModel(@PathVariable int id) {
-        dao.delete2(id);
+    public String deleteModel(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        boolean deletionSuccessful = daoModel.delete(id);
+        if(!deletionSuccessful){
+            redirectAttributes.addAttribute("deletionError", "error");
+        }
         return "redirect:/modele_admin";
     }
     @RequestMapping(value = "/deletePracownik/{id}")
     public String deletePracownik(@PathVariable int id) {
-        dao.delete3(id);
+        daoPracownik.delete(id);
         return "redirect:/pracownicy";
     }
+
+    @RequestMapping(value = "/deletePojazd/{id}")
+    public String deletePojazd(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        boolean deletionSuccessful = pojazdDAO.delete(id);
+        if(!deletionSuccessful){
+            redirectAttributes.addAttribute("deletionError", "error");
+        }
+        return "redirect:/pojazdy";
+    }
+
+    @RequestMapping(value = "/deleteOfertaKupno/{id}")
+    public String deleteOfertaKupno(@PathVariable int id) {
+        daoOfertaKupno.delete(id);
+        return "redirect:/ofertaKupno_admin";
+    }
+
+    @RequestMapping(value = "/deleteOfertaWypozyczenie/{id}")
+    public String deleteOfertaWypozyczenie(@PathVariable int id) {
+        daoOfertaWypozyczenie.delete(id);
+        return "redirect:/ofertaWypozyczenie_admin";
+    }
+
     @GetMapping("/searchSalony")
     public String searchSalony(@RequestParam String query, Model model) {
         List<Salon_samochodowy> searchResults = dao.searchSalony(query);
