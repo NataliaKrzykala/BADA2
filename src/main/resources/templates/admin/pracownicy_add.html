@@ -171,7 +171,7 @@
         <div class="form-group">
             <label for="data_zatrudnienia">Date of employment</label>
             <div class="input-group date">
-                <input type="text" class="form-control" id="data_zatrudnienia" th:field="*{data_zatrudnienia}" autocomplete="off">
+                <input type="text" class="form-control" id="data_zatrudnienia" th:field="*{data_zatrudnienia}" autocomplete="off" th:required="true">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
@@ -179,9 +179,9 @@
         </div>
 
         <div class="form-group">
-            <label for="data_zwolnienia">Date of dismissal</label>
+            <label for="data_zwolnienia">Date of end of a contract</label>
             <div class="input-group date">
-                <input type="text" class="form-control" id="data_zwolnienia" th:field="*{data_zwolnienia}" autocomplete="off" th:required="false">
+                <input type="text" class="form-control" id="data_zwolnienia" th:field="*{data_zwolnienia}" autocomplete="off" th:required="true">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>

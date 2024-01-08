@@ -185,11 +185,11 @@
         <div class="col-md-10 mt-5">
             <form method="post" th:action="@{/index}">
                 <div class="form-group">
-                    <label style="font-size:30px" th:inline="text">Welcome <a
-                            style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!
+                    <label style="font-size:30px" th:inline="text">Welcome
+                        <span style="color:lightskyblue; text-transform:capitalize"><b th:text="${klient.imie + ' ' + klient.nazwisko}"></b></span>! <!--<a style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!-->
                         </label>
-                    <div style="font-size:20px">If you want to see all possible actions go to <a th:href="@{/index_user}"><b>Home</b></a>.
-                    </div>
+                    <!--<div style="font-size:20px">If you want to see all possible actions go to <a th:href="@{/index_user}"><b>Home</b></a>.
+                    </div>-->
                     <div style="font-size:20px">If you want to logout, click "Logout" button under this text.</div>
                 </div>
 
