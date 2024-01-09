@@ -106,4 +106,14 @@ public class PojazdDAO {
         }
     }
 
+    public List<String> listOfCarsOfModel(int id)
+    {
+        String sql = "SELECT \"VIN\" FROM \"Pojazdy\" WHERE \"id_model\" = ?";
+
+        /*List<Pojazd> listPojazd = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Pojazd.class), id);*/
+        List<String> listPojazdVINs = jdbcTemplate.queryForList(sql, String.class, id);
+
+        return listPojazdVINs;
+    }
+
 }

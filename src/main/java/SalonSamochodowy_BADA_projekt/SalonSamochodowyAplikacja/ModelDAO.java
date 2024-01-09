@@ -53,8 +53,8 @@ public class ModelDAO {
 
     public boolean delete(int id) {
         // Check if there are any vehicles associated with the specified model
-        String checkVehiclesSql = "SELECT COUNT(*) FROM \"Pojazdy\" WHERE \"id_model\" = ?";
-        int vehicleCount = jdbcTemplate.queryForObject(checkVehiclesSql, Integer.class, id);
+        String checkIfVehiclesSql = "SELECT COUNT(*) FROM \"Pojazdy\" WHERE \"id_model\" = ?";
+        int vehicleCount = jdbcTemplate.queryForObject(checkIfVehiclesSql, Integer.class, id);
 
         if (vehicleCount > 0) {
             // Display a message indicating that the model cannot be deleted

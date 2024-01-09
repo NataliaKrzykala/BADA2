@@ -362,8 +362,10 @@ public class AppController implements WebMvcConfigurer {
     @RequestMapping(value = "/deleteModel/{id}")
     public String deleteModel(@PathVariable int id, RedirectAttributes redirectAttributes) {
         boolean deletionSuccessful = daoModel.delete(id);
+
         if(!deletionSuccessful){
-            redirectAttributes.addAttribute("deletionError", "error");
+            List<String> listPojazdyVINs = pojazdDAO.listOfCarsOfModel(id);
+            redirectAttributes.addAttribute("deletionError", listPojazdyVINs);
         }
         return "redirect:/modele_admin";
     }
