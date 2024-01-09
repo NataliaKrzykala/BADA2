@@ -187,4 +187,22 @@ public class OfertaDAO {
         String sql = "DELETE FROM \"Oferty\" WHERE  \"id_oferta\" = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public List<String> listOffersOfCar(int id)
+    {
+        String sql = "SELECT s.\"nazwa\" FROM \"Oferty\" o JOIN \"Salony_samochodowe\" s ON o.\"id_salon_samochodowy\" = s.\"id_salon_samochodowy\" WHERE o.\"id_pojazd\" = ?";
+        /*"SELECT \"id_model\" FROM \"Oferty\" JOIN \"Pojazdy\" ON \"id_pojazd\" WHERE \"id_pojazd\" = ?";*/
+
+        List<String> listOffersModels = jdbcTemplate.queryForList(sql, String.class, id);
+
+        return listOffersModels;
+    }
+
+    public List<String> listOffersOfShop(int id)
+    {
+        String sql = "SELECT \"typ_nabycia\" FROM \"Oferty\" WHERE \"id_salon_samochodowy\" = ?";
+        List<String> listTypeOfPurchase = jdbcTemplate.queryForList(sql, String.class, id);
+
+        return listTypeOfPurchase;
+    }
 }

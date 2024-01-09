@@ -90,9 +90,34 @@ public class Salon_samochodowyDAO {
         // Implementacja aktualizacji danych salonu (możesz dodać, gdy jest taka potrzeba)
     }
 
-    public void delete(int id) {
+    /*public void delete(int id) {
         String deleteSalonSql = "DELETE FROM \"Salony_samochodowe\" WHERE \"id_salon_samochodowy\" = ?";
         jdbcTemplate.update(deleteSalonSql, id);
+    }*/
+
+    public int delete(int id) {
+        // Check if there are any offers associated with the specified shop
+        String checkOfferSql = "SELECT COUNT(*) FROM \"Oferty\" WHERE \"id_salon_samochodowy\" = ?";
+        int offerCount = jdbcTemplate.queryForObject(checkOfferSql, Integer.class, id);
+        if (offerCount > 0) {
+            // Display a message indicating that the shop cannot be deleted
+            System.out.println("Cannot delete the shop because there are associated offers.");
+            return 1;
+        }
+
+        String checkEmployeeSql = "SELECT COUNT(*) FROM \"Pracownicy\" WHERE \"id_salon_samochodowy\" = ?";
+        int employeeCount = jdbcTemplate.queryForObject(checkEmployeeSql, Integer.class, id);
+        if (employeeCount > 0) {
+            System.out.println("Cannot delete the shop because there are associated employees.");
+            return 2;
+        }
+
+        // If no associated offers or employees proceed with car deletion
+        String deleteShopSql = "DELETE FROM \"Salony_samochodowe\" WHERE  \"id_salon_samochodowy\" = ?";
+        jdbcTemplate.update(deleteShopSql, id);
+        System.out.println("Car shop successfully.");
+        return 3;
+
     }
 
     public List<Salon_samochodowy> searchSalony(String query) {

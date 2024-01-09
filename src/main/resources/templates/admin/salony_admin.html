@@ -131,6 +131,14 @@
 
 <!-- Content container -->
 <div class="container">
+
+    <div th:if="${param.deletionError}" class="alert alert-danger">
+        <strong>Error: cannot delete the model because there are associated employees or offers</strong>
+        <!--<ul>
+            <li th:each="vin : ${param.deletionError}" th:text="${vin}"></li>
+        </ul>-->
+    </div>
+
     <!-- Iterate over the list of Salon_samochodowy objects and create card items -->
     <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
         <div class="card-header" th:text="${salon.nazwa}"></div>

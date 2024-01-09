@@ -106,7 +106,7 @@ public class PojazdDAO {
         }
     }
 
-    public List<String> listOfCarsOfModel(int id)
+    public List<String> listCarsOfModel(int id)
     {
         String sql = "SELECT \"VIN\" FROM \"Pojazdy\" WHERE \"id_model\" = ?";
 

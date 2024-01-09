@@ -355,8 +355,16 @@ public class AppController implements WebMvcConfigurer {
         return "redirect:/pojazdy";  // Przekierowanie na strone z lista pojazdow admina
     }
     @RequestMapping(value = "/deleteSalon/{id}")
-    public String deleteSalon(@PathVariable int id) {
-        dao.delete(id);
+    public String deleteSalon(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        int deletionSuccesfull = dao.delete(id);
+        if(deletionSuccesfull == 1){
+            List<String> listConflictingOffers = daoOfertaWypozyczenie.listOffersOfShop(id);
+            redirectAttributes.addAttribute("deletionError", listConflictingOffers);
+
+        } else if (deletionSuccesfull == 2){
+            List<String> listConflictingEmployees = daoPracownik.listCarsOfEmployees(id);
+            redirectAttributes.addAttribute("deletionError", listConflictingEmployees);
+        }
         return "redirect:/salony_admin";
     }
     @RequestMapping(value = "/deleteModel/{id}")
@@ -364,7 +372,7 @@ public class AppController implements WebMvcConfigurer {
         boolean deletionSuccessful = daoModel.delete(id);
 
         if(!deletionSuccessful){
-            List<String> listPojazdyVINs = pojazdDAO.listOfCarsOfModel(id);
+            List<String> listPojazdyVINs = pojazdDAO.listCarsOfModel(id);
             redirectAttributes.addAttribute("deletionError", listPojazdyVINs);
         }
         return "redirect:/modele_admin";
@@ -379,7 +387,8 @@ public class AppController implements WebMvcConfigurer {
     public String deletePojazd(@PathVariable int id, RedirectAttributes redirectAttributes) {
         boolean deletionSuccessful = pojazdDAO.delete(id);
         if(!deletionSuccessful){
-            redirectAttributes.addAttribute("deletionError", "error");
+            List<String> listConflictingOffers = daoOfertaWypozyczenie.listOffersOfCar(id);
+            redirectAttributes.addAttribute("deletionError", listConflictingOffers);
         }
         return "redirect:/pojazdy";
     }

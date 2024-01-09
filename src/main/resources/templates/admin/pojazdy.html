@@ -131,7 +131,10 @@
 <div class="container">
 
     <div th:if="${param.deletionError}" class="alert alert-danger">
-        <strong>Error: Cannot delete the car because there are associated offers.</strong>
+        <strong>Error: cannot delete the car because there are associated offers in car shops:</strong>
+        <ul>
+            <li th:each="vin : ${param.deletionError}" th:text="${vin}"></li>
+        </ul>
     </div>
 
     <div th:each="pojazd, iterStat : ${listPojazd}" class="card">

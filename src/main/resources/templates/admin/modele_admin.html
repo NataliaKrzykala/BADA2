@@ -133,9 +133,9 @@
 <div class="container">
 
     <div th:if="${param.deletionError}" class="alert alert-danger">
-        <strong>Error: Cannot delete the model because there are associated vehicles:</strong>
+        <strong>Error: cannot delete the model because there are associated vehicles:</strong>
         <ul>
-            <p><li th:each="vin : ${param.deletionError}" th:text="${vin}"></li></p>
+            <li th:each="vin : ${param.deletionError}" th:text="${vin}"></li>
         </ul>
     </div>
 

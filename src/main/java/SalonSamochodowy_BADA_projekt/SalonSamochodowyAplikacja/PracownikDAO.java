@@ -129,4 +129,12 @@ public class PracownikDAO {
         jdbcTemplate.update(sql, id);
     }
 
+    public List<String> listCarsOfEmployees(int id)
+    {
+        String sql = "SELECT \"nazwisko\" FROM \"Pracownicy\" WHERE \"id_salon_samochodowy\" = ?";
+        List<String> listEmployeesSurname = jdbcTemplate.queryForList(sql, String.class, id);
+
+        return listEmployeesSurname;
+    }
+
 }
