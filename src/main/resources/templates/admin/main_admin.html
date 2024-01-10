@@ -71,25 +71,44 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-10 mt-5">
+<!-- Container 1 -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <form method="post" th:action="@{/index}">
-                <div class="form-group">
-                    <label style="font-size:30px" th:inline="text">Welcome <a
-                            style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!
-                    </label>
-                    <div style="font-size:20px">If you want to see all possible actions go to <a th:href="@{/index_admin}"><b>Home</b></a>.
-                    </div>
-                    <div style="font-size:20px">If you want to logout, click "Logout" button under this text.</div>
+                <div class="card shadow-lg rounded-3 p-4">
+                    <h1 class="card-title text-primary" th:inline="text">Welcome, <a class="text-info text-capitalize fw-bold">[[${#httpServletRequest.remoteUser}]]</a>!</h1>
+                    <p class="lead">Explore all available actions on <a th:href="@{/index_admin}" class="text-info fw-bold">Home</a>.</p>
+                    <p class="lead">To logout, simply click the "Logout" button below.</p>
+                    <button class="btn btn-primary" type="submit" onclick="successfullyLogout()">Logout</button>
                 </div>
-
-                <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
-                </button>
             </form>
         </div>
+    </div>
+</div>
 
+<!-- Container 2 -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <h2 class="card-title">Vehicle Counts</h2>
+                    <p class="card-text">Total Vehicles: <span th:text="${dashboard.vehicleCount}"></span></p>
+                    <p class="card-text">Total Car Models: <span th:text="${dashboard.carModelCount}"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <h2 class="card-title">Offer Counts</h2>
+                    <p class="card-text">Total Purchase Offers: <span th:text="${dashboard.purchaseOfferCount}"></span></p>
+                    <p class="card-text">Total Rental Offers: <span th:text="${dashboard.rentalOfferCount}"></span></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -97,6 +116,7 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/script.js}"></script>
+
 
 </body>
 </html>
