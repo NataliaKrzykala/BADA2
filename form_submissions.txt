@@ -18,3 +18,9 @@ Name: gfgsg
 Email: fg@wp.pl
 Message: kilo gwozdzi
 -----------------------
+=== Form Submission ===
+Date and Time: 2024-01-10 20:36:22
+Name: Pizza
+Email: pifsd@wp.pl
+Message: fgdsgs
+-----------------------
