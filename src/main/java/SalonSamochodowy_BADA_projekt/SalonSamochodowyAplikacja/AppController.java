@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Configuration
 @Controller
@@ -83,8 +85,26 @@ public class AppController implements WebMvcConfigurer {
 
     @RequestMapping(value = {"/main_admin"})
     public String showAdminPage(Model model) {
+        // Add code to retrieve dashboard information
+        int vehicleCount = dao.countVehicles();
+        int carModelCount = dao.countCarModels();
+        int purchaseOfferCount = dao.countPurchaseOffers();
+        int rentalOfferCount = dao.countRentalOffers();
+
+
+        // Create a Map to hold dashboard information
+        Map<String, Integer> dashboard = new HashMap<>();
+        dashboard.put("vehicleCount", vehicleCount);
+        dashboard.put("carModelCount", carModelCount);
+        dashboard.put("purchaseOfferCount", purchaseOfferCount);
+        dashboard.put("rentalOfferCount", rentalOfferCount);
+
+        // Add the dashboard map to the model
+        model.addAttribute("dashboard", dashboard);
+
         return "admin/main_admin";
     }
+
 
     @RequestMapping(value = "/index_admin")
     public String showIndexAdminPage() {
@@ -411,5 +431,6 @@ public class AppController implements WebMvcConfigurer {
         model.addAttribute("listSalon_samochodowy", searchResults);
         return "salony";
     }
+
 
 }

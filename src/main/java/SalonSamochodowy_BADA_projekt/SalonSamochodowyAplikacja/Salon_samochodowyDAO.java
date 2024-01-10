@@ -120,6 +120,28 @@ public class Salon_samochodowyDAO {
 
     }
 
+
+    public int countVehicles() {
+        String sql = "SELECT COUNT(*) FROM \"Pojazdy\"";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public int countCarModels() {
+        String sql = "SELECT COUNT(*) FROM \"Modele\"";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public int countPurchaseOffers() {
+        String sql = "SELECT COUNT(*) FROM \"Oferty\" WHERE \"typ_nabycia\" = 'kupno'";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public int countRentalOffers() {
+        String sql = "SELECT COUNT(*) FROM \"Oferty\" WHERE \"typ_nabycia\" = 'wypozyczenie'";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+
     public List<Salon_samochodowy> searchSalony(String query) {
         String sql = "SELECT ss.*, a.*, p.* " +
                 "FROM \"Salony_samochodowe\" ss " +
