@@ -1,40 +1,122 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Error Page</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Salon Samochodowy</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            height: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .container:hover {
+            max-width: 700px;
+        }
+
+        h1 {
+            color: #ff5a5f;
+            font-size: 8em;
+            margin: 0;
+            line-height: 1.2;
+            opacity: 0.8;
+            transform: translateY(0);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .container:hover h1 {
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+
+        p {
+            color: #333;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #ff5a5f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .icon-car {
+            font-size: 12em;
+            color: #ff5a5f;
+            margin-top: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(1);
+            animation: carMove 7s alternate infinite;
+        }
+
+        .road-animation {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url('https://example.com/path-to-road-image.png') repeat-x;
+            animation: roadMove 0.1s linear infinite;
+        }
+
+        @keyframes carMove {
+            0% {
+                left: 0;
+                transform: translateX(-50%) scaleX(1);
+            }
+            50% {
+                left: 100%;
+                transform: translateX(-50%) scaleX(-1);
+            }
+            100% {
+                left: 0;
+                transform: translateX(-50%) scaleX(1);
+            }
+        }
+
+        @keyframes roadMove {
+            100% {
+                background-position: 100% 0;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 mt-5">
-            <form method="post" th:action="@{/index}">
-                <div class="form-group">
-                    <div><b><p style="font-size:30px">Error</p></b></div>
-                    <div><p style="font-size:24px">403 - Forbidden page</p></div>
-                </div>
-                <button class="btn btn-primary" type="submit" value="Sign In">Back to home page</button>
-            </form>
-        </div>
-    </div>
+    <h1>403</h1>
+    <p>Oops!</p>
+    <p>Go back to the <a href="/">main page</a> of the car showroom.</p>
+    <div class="icon-car">&#128663;</div>
+    <div class="road-animation"></div>
 </div>
 
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
