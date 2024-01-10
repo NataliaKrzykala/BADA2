@@ -2,26 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome Page</title>
+    <title>VeloVista - Where Innovation Meets Elegance</title>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
-            background: #f4f4f4;
-            color: #0ee3ff;
+            background: #ffffff;
+            color: #ffffff;
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         .navbar {
             background: rgba(0, 0, 0, 0.8);
-            padding: 5px;
             border: none;
+            position: relative;
+            z-index: 2; /* Ensure the navbar stays on top */
         }
 
         .navbar-brand {
-            font-size: 36px;
+            font-size: 24px; /* Increased font size */
             font-weight: bold;
             color: #fff;
         }
@@ -30,50 +34,60 @@
             background-color: #fff;
         }
 
-        .navbar-nav .nav-item {
-            margin-right: 15px;
+        .jumbotron video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1; /* Place the video behind other elements */
         }
 
-        .jumbotron {
-            background: #06318f;
-            padding: 100px 0;
+        .jumbotron-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
             color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 50vh; /* Adjusted height */
         }
 
-        .jumbotron h1 {
-            font-size: 60px;
+        .jumbotron-content h1 {
+            font-size: 70px; /* Increased font size */
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 10px; /* Adjusted margin */
         }
 
-        .jumbotron p {
-            font-size: 24px;
-            margin-bottom: 50px;
+        .jumbotron-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
         }
 
         .offer-section {
             text-align: center;
-            padding: 50px 0;
-            background: #fff;
-            margin-top: -20px;
-            border-top: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
-        }
-
-        .offer-section h2 {
-            font-size: 42px;
-            margin-bottom: 30px;
-            color: #9edfff;
+            padding: 30px 0;
+            margin-top: -20px; /* Removed background and border properties */
+            position: relative;
+            z-index: 2;
+            background: transparent; /* Added transparent background */
         }
 
         .car-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+            background: none; /* Removed background and border properties */
+            border: none;
             padding: 20px;
             margin-bottom: 20px;
         }
+        .offer-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
 
         .car-card img {
             max-width: 100%;
@@ -97,7 +111,7 @@
         }
 
         .action-buttons a:hover {
-            background: #23ffe6;
+            background: #fff6f6;
         }
     </style>
 
@@ -106,9 +120,9 @@
 
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">VeloVista</a>
+        <a class="navbar-brand" href="#">VeloVista</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -161,16 +175,45 @@
     </div>
 </nav>
 
+<!-- Header Section -->
+<div class="jumbotron">
+    <video autoplay muted loop>
+        <source src="/videos/auto.mp4" type="video/mp4">
+    </video>
+    <div class="jumbotron-content container">
+        <h1>VeloVista - Where Innovation Meets Elegance on the Open Road</h1>
+        <label style="font-size:30px" th:inline="text">Welcome <a
+                style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!
+        </label>
+    </div>
+</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
-
-            <label style="font-size:30px">VeloVista - where innovation meets elegance on the open road.</label>
-            <label style="font-size:30px" th:inline="text">Welcome <a
-                    style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!
-            </label>
-
+<!-- Offer Section -->
+<div class="offer-section">
+    <div class="container">
+        <h2>Our Commitments</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="car-card">
+                    <i class="fas fa-shield-alt fa-3x"></i>
+                    <h4>Reliability</h4>
+                    <p>We ensure reliable and top-notch quality in our products.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <i class="fas fa-thumbs-up fa-3x"></i>
+                    <h4>Good Service</h4>
+                    <p>Our team is dedicated to providing excellent customer service.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <i class="fas fa-cogs fa-3x"></i>
+                    <h4>Another Aspect</h4>
+                    <p>Constantly improving and adapting to meet your needs.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

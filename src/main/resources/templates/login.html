@@ -5,11 +5,32 @@
     <title>Login Page</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <style>
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            border: none;
+            position: relative;
+            z-index: 2; /* Ensure the navbar stays on top */
+        }
+
+        .navbar-brand {
+            font-size: 24px; /* Increased font size */
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+    </style>
 
 </head>
 <body style="background-image: url(/images/home2.png); background-size: cover;">
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="/">VeloVista</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
