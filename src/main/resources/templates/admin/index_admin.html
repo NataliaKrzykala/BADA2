@@ -92,19 +92,8 @@
         </div>
     </div>
 </div>
-<!--<div class="jumbotron">
-    <video autoplay muted loop>
-        <source src="/videos/auto.mp4" type="video/mp4">
-    </video>
-    <div class="jumbotron-content container">
-        <h1>VeloVista - Where Innovation Meets Elegance on the Open Road</h1>
-        <label style="font-size:30px" th:inline="text">Welcome <a
-                style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>!
-        </label>
-    </div>
-</div>-->
 
-<div class="list-group">
+<div class="list-group d-flex justify-content-center">
     <a th:href="@{/salony_add}" class="list-group-item list-group-item-action">Add a new car shop</a>
     <a th:href="@{/modele_add}" class="list-group-item list-group-item-action">Add a new car model</a>
     <a th:href="@{/pojazdy_add}" class="list-group-item list-group-item-action">Add a new car</a>
