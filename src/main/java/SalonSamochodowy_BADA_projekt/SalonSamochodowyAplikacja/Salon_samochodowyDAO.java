@@ -115,7 +115,7 @@ public class Salon_samochodowyDAO {
         // If no associated offers or employees proceed with car deletion
         String deleteShopSql = "DELETE FROM \"Salony_samochodowe\" WHERE  \"id_salon_samochodowy\" = ?";
         jdbcTemplate.update(deleteShopSql, id);
-        System.out.println("Car shop successfully.");
+        System.out.println("Car shop deleted successfully.");
         return 3;
 
     }
