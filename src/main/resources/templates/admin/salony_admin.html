@@ -129,30 +129,34 @@
 </div>
 
 
-<!-- Content container -->
 <div class="container">
+    <form action="/searchSalony" method="get" class="form-inline mb-2">
+        <input type="text" class="form-control mr-sm-2" placeholder="Search" name="query">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
 
-    <div th:if="${param.deletionError}" class="alert alert-danger">
-        <strong>Error: cannot delete the model because there are associated employees or offers</strong>
-        <!--<ul>
-            <li th:each="vin : ${param.deletionError}" th:text="${vin}"></li>
-        </ul>-->
-    </div>
-
-    <!-- Iterate over the list of Salon_samochodowy objects and create card items -->
-    <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="card">
-        <div class="card-header" th:text="${salon.nazwa}"></div>
-        <div class="card-body">
-            <p><strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span></p>
-            <p><strong>Foundation Date:</strong> <span th:text="${salon.data_zalozenia}"></span></p>
-            <p><strong>Address:</strong> <span
-                    th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span>
-            </p>
-            <button class="btn btn-danger" th:onclick="'javascript:deleteSalon(' + ${salon.id_salon_samochodowy} + ')'" >Delete</button>
+    <div class="row">
+        <!-- Iterate over the list of Salon_samochodowy objects and create individual cards dynamically -->
+        <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title" th:text="${salon.nazwa}"></h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-subtitle mb-2 text-muted">
+                        <strong>Owner:</strong> <span th:text="${salon.wlasciciel}"></span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Foundation Date:</strong> <span th:text="${#temporals.format(salon.data_zalozenia, 'dd-MM-yyyy')}"></span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

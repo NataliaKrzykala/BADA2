@@ -241,11 +241,11 @@
                     <!-- Add input fields for updating data -->
                     <div class="form-group">
                         <label for="updateNr_telefonu">Update phone number:</label>
-                        <input type="text" id="updateNr_telefonu" name="updateNr_telefonu" th:value="${klient.nr_telefonu}" class="form-control" />
+                        <input type="tel" id="updateNr_telefonu" name="updateNr_telefonu" th:value="${klient.nr_telefonu}" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="updateEmail">Update email:</label>
-                        <input type="text" id="updateEmail" name="updateEmail" th:value="${klient.email}" class="form-control" />
+                        <input type="email" id="updateEmail" name="updateEmail" th:value="${klient.email}" class="form-control" />
                     </div>
                     <!-- Add input fields for address details -->
                     <div class="form-group">
@@ -258,11 +258,11 @@
                     </div>
                     <div class="form-group">
                         <label for="nr_lokalu">Update house number:</label>
-                        <input type="text" id="nr_lokalu" name="nr_lokalu" th:value="${klient.adres.nr_lokalu}" class="form-control" />
+                        <input type="number" id="nr_lokalu" name="nr_lokalu" th:value="${klient.adres.nr_lokalu}" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="id_poczta">Update postal code:</label>
-                        <input type="text" id="id_poczta" name="id_poczta" th:value="${klient.adres.id_poczta}" class="form-control" />
+                        <input type="number" id="id_poczta" name="id_poczta" th:value="${klient.adres.id_poczta}" class="form-control" />
                     </div>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary">Update</button>
