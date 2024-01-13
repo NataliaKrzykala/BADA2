@@ -7,6 +7,15 @@ public class Adres {
     private String ulica;
     private String nr_lokalu;
     private int id_poczta;
+    private Poczta pocztaa;
+
+    public Poczta getPocztaa() {
+        return pocztaa;
+    }
+
+    public void setPocztaa(Poczta pocztaa) {
+        this.pocztaa = pocztaa;
+    }
 
     private String kod_poczty;
     private String poczta;

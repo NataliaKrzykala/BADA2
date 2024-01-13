@@ -11,6 +11,9 @@
     <title>VeloVista New Employee - Admin Dashboard</title>
 
     <style>
+        .error{
+            color:red;
+        }
         body {
             background-color: #f8f9fa;
         }
@@ -146,6 +149,7 @@
         <div class="form-group">
             <label for="imie">Name</label>
             <input type="text" class="form-control" id="imie" th:field="*{imie}" th:required="true">
+            <!--<p th:if="${#fields.hasErrors('imie')}" th:errorclass="error" th:errors="*{imie}">incorrect </p>-->
         </div>
 
         <div class="form-group">
@@ -160,7 +164,7 @@
 
         <div class="form-group">
             <label for="wynagrodzenie">Salary</label>
-            <input type="text" class="form-control" id="wynagrodzenie" th:field="*{wynagrodzenie}">
+            <input type="text" class="form-control" id="wynagrodzenie" th:field="*{wynagrodzenie}" th:min="0">
         </div>
 
         <div class="form-group">
@@ -243,6 +247,12 @@
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
+<!--<div th:if="${errors != null}">
+    <p>Error(s) occurred:</p>
+    <ul>
+        <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+    </ul>
+</div>-->
 
 
 

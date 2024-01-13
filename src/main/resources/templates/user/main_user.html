@@ -214,7 +214,7 @@
         <div class="card-body">
             <p><strong>Phone number:</strong> <span th:text="${klient.nr_telefonu}"></span></p>
             <p><strong>Email address:</strong> <span th:text="${klient.email}"></span></p>
-            <p><strong>Address:</strong> <span th:text="${klient.adres.miejscowosc + ', ' + klient.adres.ulica + ' ' + klient.adres.nr_lokalu + ', ' + klient.adres.kod_poczty + ' ' + klient.adres.poczta}"></span></p>
+            <p><strong>Address:</strong> <span th:text="${klient.adres.miejscowosc + ', ' + klient.adres.ulica + ' ' + klient.adres.nr_lokalu + ', ' + klient.adres.pocztaa.kod_poczty + ' ' + klient.adres.pocztaa.poczta}"></span></p>
 
             <!-- Button to Open the Modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#myModalKlient-'">
@@ -246,6 +246,23 @@
                     <div class="form-group">
                         <label for="updateEmail">Update email:</label>
                         <input type="text" id="updateEmail" name="updateEmail" th:value="${klient.email}" class="form-control" />
+                    </div>
+                    <!-- Add input fields for address details -->
+                    <div class="form-group">
+                        <label for="miejscowosc">Update city:</label>
+                        <input type="text" id="miejscowosc" name="miejscowosc" th:value="${klient.adres.miejscowosc}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ulica">Update street:</label>
+                        <input type="text" id="ulica" name="ulica" th:value="${klient.adres.ulica}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nr_lokalu">Update house number:</label>
+                        <input type="text" id="nr_lokalu" name="nr_lokalu" th:value="${klient.adres.nr_lokalu}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="id_poczta">Update postal code:</label>
+                        <input type="text" id="id_poczta" name="id_poczta" th:value="${klient.adres.id_poczta}" class="form-control" />
                     </div>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary">Update</button>

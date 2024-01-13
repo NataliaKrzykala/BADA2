@@ -168,8 +168,8 @@
         </div>
 
         <div class="form-group">
-            <label for="przebieg">Mileage</label>
-            <input type="text" class="form-control" id="przebieg" th:field="*{przebieg}" th:required="true">
+            <label for="przebieg">Mileage (km)</label>
+            <input type="text" class="form-control" id="przebieg" th:field="*{przebieg}" th:required="true" th:min="0">
         </div>
 
         <div class="form-group">

@@ -44,4 +44,8 @@ public class Poczta {
                 ", poczta='" + poczta + '\'' +
                 '}';
     }
+
+    public Poczta(){
+
+    }
 }

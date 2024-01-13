@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Configuration
 @Controller
@@ -139,8 +143,15 @@ public class AppController implements WebMvcConfigurer {
         }
     }
 
+    @Autowired
+    AdresDAO adresDAO;
+
     @PostMapping("/updateKlient/{id}")
-    public String updateKlient(@PathVariable int id, @RequestParam String updateNr_telefonu, @RequestParam String updateEmail) {
+    public String updateKlient(@PathVariable int id, @RequestParam String updateNr_telefonu, @RequestParam String updateEmail,
+                               @RequestParam String miejscowosc,
+                               @RequestParam String ulica,
+                               @RequestParam String nr_lokalu,
+                               @RequestParam int id_poczta) {
         // Retrieve the Klient from the DAO
         Klient klient = daoKlient.get(id);
 
@@ -148,7 +159,17 @@ public class AppController implements WebMvcConfigurer {
             klient.setNr_telefonu(updateNr_telefonu);
             klient.setEmail(updateEmail);
 
+            Adres adres = adresDAO.get(klient.getId_adres());
+            adres.setMiejscowosc(miejscowosc);
+            adres.setUlica(ulica);
+            adres.setNr_lokalu(nr_lokalu);
+            adres.setId_poczta(id_poczta);
+
+            klient.setAdres(adres);
+
             daoKlient.update(klient);
+            adresDAO.update(adres);
+
 
             return "redirect:/main_user";
         } else {
@@ -333,6 +354,7 @@ public class AppController implements WebMvcConfigurer {
     private StanowiskoDAO stanowiskoDAO;
     @RequestMapping(value ={"/pracownicy_add"})
     public String viewPracownicyAddPage(Model model){
+
         Pracownik pracownik = new Pracownik();
         model.addAttribute("pracownik", pracownik);
 
@@ -347,6 +369,12 @@ public class AppController implements WebMvcConfigurer {
 
     @PostMapping("/savePracownik")
     public String savePracownik(@ModelAttribute Pracownik pracownik) {
+       //boolean errors = result.hasErrors();
+        //if (errors) {
+            //System.out.println("There was an error with a field input");
+            //model.addAttribute("errors", result.getAllErrors());
+            //return "redirect:/pracownicy_add";
+        //}
         daoPracownik.save(pracownik);
         return "redirect:/pracownicy";  // Przekierowanie na strone z lista pracowników
     }

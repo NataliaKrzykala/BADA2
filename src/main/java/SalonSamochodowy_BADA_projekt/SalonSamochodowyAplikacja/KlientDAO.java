@@ -75,9 +75,13 @@ public class KlientDAO {
             adres.setMiejscowosc(rs.getString("miejscowosc"));
             adres.setUlica(rs.getString("ulica"));
             adres.setNr_lokalu(rs.getString("nr_lokalu"));
-            adres.setKod_poczty(rs.getString("kod_poczty"));
-            adres.setPoczta(rs.getString("poczta"));
+            adres.setId_poczta(rs.getInt("id_poczta"));
 
+            Poczta poczta = new Poczta();
+            poczta.setKod_poczty(rs.getString("kod_poczty"));
+            poczta.setPoczta(rs.getString("poczta"));
+
+            adres.setPocztaa(poczta);
             klient.setAdres(adres);
 
             return klient;
@@ -86,19 +90,40 @@ public class KlientDAO {
 
     /* Update – aktualizacja danych */
     public void update(Klient klient) {
-        String sql = "UPDATE \"Klienci\" SET " +
+        /*String sql = "UPDATE \"Klienci\" SET " +
+                "\"imie\" = ?, " +
+                "\"nazwisko\" = ?, " +
+                "\"nr_telefonu\" = ?, " +
+                "\"email\" = ? " +
+                "WHERE \"id_klient\" = ?";*/
+
+        String updateKlientSql = "UPDATE \"Klienci\" SET " +
                 "\"imie\" = ?, " +
                 "\"nazwisko\" = ?, " +
                 "\"nr_telefonu\" = ?, " +
                 "\"email\" = ? " +
                 "WHERE \"id_klient\" = ?";
 
-        jdbcTemplate.update(sql,
+        /*String updateAdresSql = "UPDATE \"Adresy\" SET " +
+                "\"miejscowosc\" = ?, " +
+                "\"ulica\" = ?, " +
+                "\"nr_lokalu\" = ?, " +
+                "\"id_poczta\" = ? " +
+                "WHERE \"id_adres\" = ?";*/
+
+        jdbcTemplate.update(updateKlientSql,
                 klient.getImie(),
                 klient.getNazwisko(),
                 klient.getNr_telefonu(),
                 klient.getEmail(),
                 klient.getId_klient());
+
+        /*jdbcTemplate.update(updateAdresSql,
+                klient.getAdres().getMiejscowosc(),
+                klient.getAdres().getUlica(),
+                klient.getAdres().getNr_lokalu(),
+                klient.getAdres().getId_poczta(),
+                klient.getAdres().getId_adres());*/
     }
 
     /* Delete – wybrany rekord z danym id */

@@ -1,12 +1,19 @@
 package SalonSamochodowy_BADA_projekt.SalonSamochodowyAplikacja;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class Pracownik {
 
     private int id_pracownik;
+    //@NotBlank(message = "Name cannot be blank")
+    //@Size(min = 4, max = 25)
+    //@Pattern(regexp = "^[A-Za-z]+$", message = "Name can only contain letters")
     private String imie;
     private String nazwisko;
     private String pesel;

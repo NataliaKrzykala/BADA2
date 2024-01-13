@@ -52,7 +52,21 @@ public class AdresDAO {
 
     /* Update – aktualizacja danych */
     public void update(Adres adres) {
-        // Implementacja aktualizacji adresu
+
+        String sql = "UPDATE \"Adresy\" SET " +
+                    "\"miejscowosc\" = ?, " +
+                    "\"ulica\" = ?, " +
+                    "\"nr_lokalu\" = ?, " +
+                    "\"id_poczta\" = ? " +
+                    "WHERE \"id_adres\" = ?";
+
+        jdbcTemplate.update(sql,
+                adres.getMiejscowosc(),
+                adres.getUlica(),
+                adres.getNr_lokalu(),
+                adres.getId_poczta(),
+                adres.getId_adres());
+
     }
 
     /* Delete – wybrany rekord z danym id */

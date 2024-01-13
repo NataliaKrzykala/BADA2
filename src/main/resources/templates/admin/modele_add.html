@@ -142,27 +142,27 @@
 
         <div class="form-group">
             <label for="nazwa_modelu">Name</label>
-            <input type="text" class="form-control" id="nazwa_modelu" th:field="*{nazwa_modelu}">
+            <input type="text" class="form-control" id="nazwa_modelu" th:field="*{nazwa_modelu}" th:required="true">
         </div>
 
         <div class="form-group">
             <label for="liczba_drzwi">Number of doors</label>
-            <input type="text" class="form-control" id="liczba_drzwi" th:field="*{liczba_drzwi}">
+            <input type="text" class="form-control" id="liczba_drzwi" th:field="*{liczba_drzwi}" th:required="true" th:type="number" th:min="0">
         </div>
 
         <div class="form-group">
-            <label for="moc_silnika">Engine power</label>
-            <input type="text" class="form-control" id="moc_silnika" th:field="*{moc_silnika}">
+            <label for="moc_silnika">Engine power (HP)</label>
+            <input type="text" class="form-control" id="moc_silnika" th:field="*{moc_silnika}" th:required="true" th:min="0">
         </div>
 
         <div class="form-group">
-            <label for="spalanie_paliwa">Fuel usage</label>
-            <input type="text" class="form-control" id="spalanie_paliwa" th:field="*{spalanie_paliwa}">
+            <label for="spalanie_paliwa">Fuel usage (l/km)</label>
+            <input type="text" class="form-control" id="spalanie_paliwa" th:required="true" th:field="*{spalanie_paliwa}">
         </div>
 
         <div class="form-group">
-            <label for="pojemnosc_bagaznika">Trunk capacity</label>
-            <input type="text" class="form-control" id="pojemnosc_bagaznika" th:field="*{pojemnosc_bagaznika}">
+            <label for="pojemnosc_bagaznika">Trunk capacity (l)</label>
+            <input type="text" class="form-control" id="pojemnosc_bagaznika" th:field="*{pojemnosc_bagaznika}" th:required="true" th:min="0">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
