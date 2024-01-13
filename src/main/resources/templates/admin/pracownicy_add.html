@@ -159,17 +159,17 @@
 
         <div class="form-group">
             <label for="pesel">PESEL</label>
-            <input type="text" class="form-control" id="pesel" th:field="*{pesel}" th:required="false">
+            <input type="number" class="form-control" id="pesel" th:field="*{pesel}" th:required="false">
         </div>
 
         <div class="form-group">
             <label for="wynagrodzenie">Salary</label>
-            <input type="text" class="form-control" id="wynagrodzenie" th:field="*{wynagrodzenie}" th:min="0">
+            <input type="number" class="form-control" id="wynagrodzenie" th:field="*{wynagrodzenie}" th:min="0">
         </div>
 
         <div class="form-group">
             <label for="numer_telefonu">Phone number</label>
-            <input type="text" class="form-control" id="numer_telefonu" th:field="*{numer_telefonu}" th:required="false">
+            <input type="number" class="form-control" id="numer_telefonu" th:field="*{numer_telefonu}" th:required="false">
         </div>
 
         <div class="form-group">
@@ -194,7 +194,7 @@
 
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="text" class="form-control" id="email" th:field="*{email}" th:required="false">
+            <input type="email" class="form-control" id="email" th:field="*{email}" th:required="false">
         </div>
 
         <div class="container text-center">
@@ -235,13 +235,13 @@
 
         <div class="form-group">
             <label for="nr_lokalu">Apartment/Unit No.</label>
-            <input type="text" class="form-control" id="nr_lokalu" th:field="*{adres.nr_lokalu}" th:required="true">
+            <input type="number" class="form-control" id="nr_lokalu" th:field="*{adres.nr_lokalu}" th:required="true">
         </div>
 
 
         <div class="form-group">
             <label for="id_poczta">Postal Office ID</label>
-            <input type="text" class="form-control" id="id_poczta" th:field="*{adres.id_poczta}" th:required="true">
+            <input type="number" class="form-control" id="id_poczta" th:field="*{adres.id_poczta}" th:required="true">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
