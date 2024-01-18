@@ -24,3 +24,9 @@ Name: Pizza
 Email: pifsd@wp.pl
 Message: fgdsgs
 -----------------------
+=== Form Submission ===
+Date and Time: 2024-01-18 17:38:51
+Name: natalia
+Email: aaa@pw
+Message: hello
+-----------------------

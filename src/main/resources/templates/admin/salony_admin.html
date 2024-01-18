@@ -135,6 +135,13 @@
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 
+    <div th:if="${param.deletionError}" class="alert alert-danger">
+        <strong>Error: cannot delete the shop because there are associated offers or vehicles:</strong>
+        <!--<ul>
+            <li th:each="vin : ${param.deletionError}" th:text="${vin}"></li>
+        </ul>-->
+    </div>
+
     <div class="row">
         <!-- Iterate over the list of Salon_samochodowy objects and create individual cards dynamically -->
         <div th:each="salon, iterStat : ${listSalon_samochodowy}" class="col-md-4">
@@ -153,6 +160,9 @@
                         <strong>Address:</strong> <span th:text="${salon.adres.miejscowosc + ', ' + salon.adres.ulica + ' ' + salon.adres.nr_lokalu + ', ' + salon.adres.kod_poczty + ' ' + salon.adres.poczta}"></span>
                     </p>
                 </div>
+
+                <button class="btn btn-danger" th:onclick="'deleteSalon(' + ${salon.id_salon_samochodowy} + ')'" >Delete</button>
+
             </div>
         </div>
     </div>
